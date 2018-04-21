@@ -6,6 +6,9 @@ class Game
 
   def initialize
     @level = Level1.new
+    @spawn = [19, 1]
+    @base = [0, 5]
+    @path = PathFinder.new @level.map, @spawn, @base
     @toolbar = Toolbar.new
     @cursor = Cursor.new
     @turrets = []
@@ -15,11 +18,24 @@ class Game
     @level.update
     @map = @level.map
 
-    @turrets.each &:update
+    @turrets.each do |turret|
+      turret.update
+      coordinates = turret.tile_coordinates
+      @map[coordinates[0]][coordinates[1]] = :obstacle
+    end
+
     if @placing_turret
       @placing_turret.update
+      new_map = dup_map
+      coordinates = @placing_turret.tile_coordinates
+      new_map[coordinates[0]][coordinates[1]] = :obstacle
+      @new_path = PathFinder.new new_map, @spawn, @base, 0x33_0000ff
+
       if @placing_turret.placed
         @turrets << @placing_turret
+        @path = @new_path
+        @path.color = 0x33_00ff00
+        @new_path = nil
         @placing_turret = nil
       end
     end
@@ -32,13 +48,25 @@ class Game
       @level.draw
       @toolbar.draw
       @turrets.each &:draw
+
       @placing_turret&.draw
+      @new_path&.draw
+
+      @path.draw
     end
     @cursor.draw
   end
 
   def is_occupied?(x, y)
     return true if x < 0 or x >= Tileset::WIDTH or y < 0 or y >= Tileset::HEIGHT
-    @map[x][y] != :free
+    return true if @map[x][y] != :free
+
+    new_map = dup_map
+    new_map[x][y] = :obstacle
+    not PathFinder.new(new_map, @spawn, @base).valid
+  end
+
+  def dup_map
+    @map.map do |line| line.dup end
   end
 end

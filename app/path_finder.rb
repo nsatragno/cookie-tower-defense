@@ -1,7 +1,10 @@
 class PathFinder
   attr_reader :valid
+  attr_writer :color
 
-  def initialize(map, source, dest)
+  def initialize(map, source, dest, color = 0x33_00ff00)
+    @color = color
+
     @source = source
     @dest = dest
 
@@ -57,11 +60,9 @@ class PathFinder
     end
 
     if dist[dest[0]][dest[1]] == Float::INFINITY
-      puts "invalid path"
       @valid = false
       return
     else
-      puts "valid path!"
       @valid = true
     end
 
@@ -79,7 +80,7 @@ class PathFinder
 
     return unless @valid
     @path.each do |tile|
-      Gosu.draw_rect tile[0] * 32, tile[1] * 32, 32, 32, 0x33_00ff00
+      Gosu.draw_rect tile[0] * 32, tile[1] * 32, 32, 32, @color
     end
   end
 end

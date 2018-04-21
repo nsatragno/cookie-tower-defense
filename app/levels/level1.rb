@@ -13,8 +13,6 @@ class Level1
       end
       @map << line
     end
-
-    @path = PathFinder.new @map, [19, 1], [0, 5]
   end
 
   def update
@@ -22,6 +20,5 @@ class Level1
 
   def draw
     @tileset.draw
-    @path.draw
   end
 end
