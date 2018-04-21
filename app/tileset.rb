@@ -2,6 +2,8 @@ class Tileset
   WIDTH = 20
   HEIGHT = 10
 
+  attr_reader :obstacles
+
   def initialize(filename)
     file = File.read "maps/#{filename}"
     @map = JSON.parse file
