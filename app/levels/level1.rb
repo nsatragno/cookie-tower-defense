@@ -1,4 +1,7 @@
 class Level1
+  attr_reader :map
+  attr_reader :path
+
   def initialize
     @tileset = Tileset.new "level1.json"
 

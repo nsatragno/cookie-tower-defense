@@ -4,7 +4,7 @@ class Toolbar
 
   def initialize
     basic_turret_button = Button.new 0, Y_OFFSET, "sprites/basic_turret_icon.png" do
-      puts "spawning turret"
+      Game.instance.placing_turret = BasicTurret.new
     end
 
     @buttons = [basic_turret_button]

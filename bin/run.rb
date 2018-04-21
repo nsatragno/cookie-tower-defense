@@ -16,4 +16,7 @@ require_relative '../app/window.rb'
 
 require_relative '../app/levels/level1.rb'
 
+require_relative '../app/turrets/turret.rb'
+require_relative '../app/turrets/basic_turret.rb'
+
 Window.instance.show

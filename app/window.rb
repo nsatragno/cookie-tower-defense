@@ -9,7 +9,7 @@ class Window < Gosu::Window
   def initialize
     super WINDOW_WIDTH, WINDOW_HEIGHT
     self.caption = GAME_TITLE
-    @screen = Game.new
+    @screen = Game.instance
   end
 
   def update
