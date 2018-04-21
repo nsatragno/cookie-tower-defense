@@ -74,14 +74,12 @@ class PathFinder
   end
 
   def draw
-    Gosu.scale(2) do
-      Gosu.draw_rect @source[0] * 32, @source[1] * 32, 32, 32, 0xff_ffffff
-      Gosu.draw_rect @dest[0] * 32, @dest[1] * 32, 32, 32, 0xff_ff0000
+    Gosu.draw_rect @source[0] * 32, @source[1] * 32, 32, 32, 0xff_ffffff
+    Gosu.draw_rect @dest[0] * 32, @dest[1] * 32, 32, 32, 0xff_ff0000
 
-      return unless @valid
-      @path.each do |tile|
-        Gosu.draw_rect tile[0] * 32, tile[1] * 32, 32, 32, 0x33_00ff00
-      end
+    return unless @valid
+    @path.each do |tile|
+      Gosu.draw_rect tile[0] * 32, tile[1] * 32, 32, 32, 0x33_00ff00
     end
   end
 end

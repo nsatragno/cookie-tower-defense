@@ -25,12 +25,10 @@ class Tileset
 
   private
   def draw_layer(layer)
-    Gosu.scale(2) do
-      layer.map do |tile_index|
-        @tiles[tile_index - 1]
-      end.each_with_index do |tile, index|
-        tile.draw (index % WIDTH) * 32, (index / WIDTH) * 32, 0
-      end
+    layer.map do |tile_index|
+      @tiles[tile_index - 1]
+    end.each_with_index do |tile, index|
+      tile.draw (index % WIDTH) * 32, (index / WIDTH) * 32, 0
     end
   end
 end

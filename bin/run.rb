@@ -5,6 +5,7 @@ require 'gosu'
 require 'json'
 require 'singleton'
 
+require_relative '../app/cursor.rb'
 require_relative '../app/game.rb'
 require_relative '../app/input.rb'
 require_relative '../app/tileset.rb'
