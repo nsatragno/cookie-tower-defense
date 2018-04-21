@@ -1,7 +1,7 @@
 class Window < Gosu::Window
   GAME_TITLE = "cookie-tower-defense"
 
-  WINDOW_HEIGHT = 720
+  WINDOW_HEIGHT = 640
   WINDOW_WIDTH = 1280
 
   include Singleton
