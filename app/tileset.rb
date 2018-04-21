@@ -11,11 +11,20 @@ class Tileset
     @background = @map["layers"].find do |layer|
       layer["name"] == "BackgroundLayer"
     end["data"]
+    @obstacles = @map["layers"].find do |layer|
+      layer["name"] == "ObstacleLayer"
+    end["data"]
   end
 
   def draw
+    draw_layer @background
+    draw_layer @obstacles
+  end
+
+  private
+  def draw_layer(layer)
     Gosu.scale(2) do
-      @background.map do |tile_index|
+      layer.map do |tile_index|
         @tiles[tile_index - 1]
       end.each_with_index do |tile, index|
         tile.draw (index % WIDTH) * 32, (index / WIDTH) * 32, 0
