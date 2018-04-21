@@ -1,11 +1,14 @@
 class Input
+  MS_LEFT = Gosu::MS_LEFT
+  MS_RIGHT = Gosu::MS_RIGHT
+
   LEFT = Gosu::KB_LEFT
   RIGHT = Gosu::KB_RIGHT
   UP = Gosu::KB_UP
   DOWN = Gosu::KB_DOWN
   FIRE = Gosu::KB_Z
 
-  BUTTONS = [LEFT, RIGHT, UP, DOWN, FIRE]
+  BUTTONS = [MS_LEFT, MS_RIGHT, LEFT, RIGHT, UP, DOWN, FIRE]
 
   @@pressed = {}
 
@@ -15,6 +18,10 @@ class Input
 
   def self.button_down?(button)
     case button
+    when MS_LEFT
+      Gosu.button_down?(Gosu::MS_LEFT)
+    when MS_RIGHT
+      Gosu.button_down?(Gosu::MS_RIGHT)
     when LEFT
       Gosu.button_down?(Gosu::KB_LEFT) or Gosu.button_down?(Gosu::GP_LEFT)
     when RIGHT
