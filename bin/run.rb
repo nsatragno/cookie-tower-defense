@@ -21,5 +21,6 @@ require_relative '../app/levels/level1.rb'
 
 require_relative '../app/turrets/turret.rb'
 require_relative '../app/turrets/basic_turret.rb'
+require_relative '../app/turrets/cookie_shooter_turret.rb'
 
 Window.instance.show

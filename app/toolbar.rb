@@ -7,7 +7,11 @@ class Toolbar
       Game.instance.placing_turret = BasicTurret.new
     end
 
-    @buttons = [basic_turret_button]
+    cookie_shooter_button = Button.new 40, Y_OFFSET, "sprites/cookie_shooter_icon.png" do
+      Game.instance.placing_turret = CookieShooterTurret.new
+    end
+
+    @buttons = [basic_turret_button, cookie_shooter_button]
   end
 
   def update
