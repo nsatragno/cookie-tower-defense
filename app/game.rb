@@ -126,6 +126,7 @@ class Game
   def is_occupied?(x, y)
     return true if x < 0 or x >= Tileset::WIDTH or y < 0 or y >= Tileset::HEIGHT
     return true if @map[x][y] != :free
+    return true if @master_cookie.collision_tiles.find_index [x, y]
 
     return true if @enemies.find do |enemy|
       coordinates = enemy.occupied_coordinates

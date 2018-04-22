@@ -1,12 +1,18 @@
 class MasterCookie
   attr_reader :tile_x
   attr_reader :tile_y
+  attr_reader :collision_tiles
 
   def initialize(tile_x, tile_y)
     @tile_x = tile_x
     @tile_y = tile_y
     @sprite = Gosu::Image.new "sprites/big_cookie.png", retro: true
     @status = :idle
+    @collision_tiles = [
+      [tile_x - 1, tile_y],
+      [tile_x, tile_y],
+      [tile_x + 1, tile_y],
+    ]
   end
 
   def take_damage
