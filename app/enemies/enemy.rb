@@ -1,4 +1,8 @@
 class Enemy
+  attr_reader :x
+  attr_reader :y
+  attr_reader :size
+
   def initialize(tile_coordinates, hp, size, speed, sprite_name)
     @hp = hp
     @size = size
@@ -35,6 +39,7 @@ class Enemy
       sprite_index = 3
     end
     @sprites[sprite_index].draw @x, @y, 2
+    Gosu::draw_rect(tile_coordinates[0] * 32, tile_coordinates[1] * 32, 32, 32, 0x33_ffffff)
   end
 
   def remove?

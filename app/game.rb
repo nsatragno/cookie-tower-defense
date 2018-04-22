@@ -1,6 +1,7 @@
 class Game
   attr_accessor :placing_turret
   attr_reader :map
+  attr_reader :enemies
   attr_reader :path
 
   include Singleton
