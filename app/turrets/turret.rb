@@ -51,10 +51,6 @@ class Turret
   def draw
     if @placed
       @sprite[0].draw @x, @y, 2
-
-      if @locked_on
-        Gosu::draw_rect(@locked_on.x, @locked_on.y, @locked_on.size, @locked_on.size, 0x33_ffffff)
-      end
     else
       @sprite[0].draw @x, @y, 10, 1, 1, @color
       @tiles_in_range&.each do |tile|
