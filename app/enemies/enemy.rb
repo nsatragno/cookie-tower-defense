@@ -61,7 +61,9 @@ class Enemy
       @healthbar.draw healthbar_x, healthbar_y, 2
 
       hp_size = 26 * @hp / @max_hp
-      color = 0xff_ff0000
+
+      hue = 125 * @hp / @max_hp
+      color = Gosu::Color.from_hsv(hue, 1, 1)
       Gosu::draw_rect healthbar_x + 3, healthbar_y + 5, hp_size, 4, color, 3
     end
   end
