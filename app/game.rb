@@ -1,6 +1,7 @@
 class Game
   attr_accessor :placing_turret
   attr_reader :map
+  attr_reader :level
   attr_reader :enemies
   attr_reader :path
 
@@ -56,6 +57,9 @@ class Game
       if @placing_turret.placed
         @turrets << @placing_turret
         @path = @new_path
+        @enemies.each do |enemy|
+          enemy.path = @path
+        end
         @path.color = 0x33_00ff00
         @new_path = nil
         @placing_turret = nil
@@ -93,7 +97,9 @@ class Game
 
     new_map = dup_map
     new_map[x][y] = :obstacle
-    not PathFinder.new(new_map, @level.spawn, @level.base).valid
+    @enemies.find do |enemy|
+      not PathFinder.new(new_map, enemy.tile_coordinates, @level.base).valid
+    end
   end
 
   def dup_map
