@@ -20,6 +20,11 @@ class Level1
       end
       @map << line
     end
+
+  end
+
+  def dough_piles
+    [DoughPile.new(12, 6, 10), DoughPile.new(13, 6, 10)]
   end
 
   def spawn_enemy

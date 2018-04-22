@@ -3,6 +3,7 @@ class Toolbar
   HEIGHT = 40
 
   def initialize
+    @font = Gosu::Font.new 15
     basic_turret_button = Button.new 0, Y_OFFSET, "sprites/basic_turret_icon.png" do
       Game.instance.placing_turret = BasicTurret.new
     end
@@ -20,5 +21,6 @@ class Toolbar
 
   def draw
     @buttons.each &:draw
+    @font.draw "Dough #{Game.instance.dough}", 200, Y_OFFSET + 10 / 2, 1
   end
 end

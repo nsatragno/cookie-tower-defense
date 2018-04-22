@@ -1,4 +1,7 @@
 class Button
+  attr_reader :x
+  attr_reader :y
+
   SIZE = 32
   def initialize(x, y, sprite_name, &action)
     @x = x

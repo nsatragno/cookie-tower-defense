@@ -1,5 +1,7 @@
 class Game
+  attr_accessor :dough
   attr_accessor :placing_turret
+  attr_accessor :dough_piles
   attr_reader :map
   attr_reader :level
   attr_reader :enemies
@@ -11,27 +13,52 @@ class Game
     @level = Level1.new
     @spawn = [19, 1]
     @base = [0, 5]
-    @path = PathFinder.new @level.map, @level.spawn, @level.base
     @toolbar = Toolbar.new
     @cursor = Cursor.new
     @turrets = []
     @enemies = []
     @bullets = []
+    @dough_piles = @level.dough_piles
+    @dough = 0
     @font = Gosu::Font.new 20
+    @path = PathFinder.new build_map, @level.spawn, @level.base
+  end
+
+  def build_map
+    map = @level.map.dup
+    @dough_piles.each do |pile|
+      map[pile.x / 32][pile.y / 32] = :obstacle
+    end
+    @turrets.each do |turret|
+      coordinates = turret.tile_coordinates
+      map[coordinates[0]][coordinates[1]] = :obstacle
+    end
+    map
   end
 
   def update
+    map_changed = false
+
     @level.update
     new_enemy = @level.spawn_enemy
     if new_enemy
       @enemies << new_enemy
     end
-    @map = @level.map
+    @map = build_map
+
+    @dough_piles.delete_if do |pile|
+      pile.update
+      if pile.remove?
+        map_changed = true
+        @map[pile.x / 32][pile.y / 32] = :free
+        next true
+      end
+      false
+    end
 
     @turrets.each do |turret|
       turret.update
       coordinates = turret.tile_coordinates
-      @map[coordinates[0]][coordinates[1]] = :obstacle
     end
     @bullets.delete_if do |bullet|
       @enemies.each do |enemy|
@@ -55,17 +82,20 @@ class Game
       end
 
       if @placing_turret.placed
+        map_changed = true
         @turrets << @placing_turret
-        @path = @new_path
-        @enemies.each do |enemy|
-          enemy.path = @path.path
-        end
-        @path.color = 0x33_00ff00
         @new_path = nil
         @placing_turret = nil
       end
     end
     @toolbar.update
+
+    if map_changed
+      @path = PathFinder.new @map, @level.spawn, @level.base, 0x33_00ff00
+      @enemies.each do |enemy|
+        enemy.path = @path.path
+      end
+    end
 
   end
 
@@ -79,6 +109,7 @@ class Game
       @enemies.each &:draw
 
       @placing_turret&.draw
+      @dough_piles.each &:draw
       @new_path&.draw
 
       @path.draw
