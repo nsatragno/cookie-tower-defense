@@ -25,9 +25,11 @@ class Game
   end
 
   def build_map
-    map = @level.map.dup
+    map = @level.map.map do |line|
+      line.dup
+    end
     @dough_piles.each do |pile|
-      map[pile.x / 32][pile.y / 32] = :obstacle
+      map[pile.tile_x][pile.tile_y] = :obstacle
     end
     @turrets.each do |turret|
       coordinates = turret.tile_coordinates
