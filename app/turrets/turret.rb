@@ -9,13 +9,34 @@ class Turret
     @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
     @update_new_path = true
     @color = 0x99_ff0000
+    @rotation = 0
   end
 
   def update
     if @placed
       if @locked_on
         if @tiles_in_range.find_index @locked_on.tile_coordinates
-          # fire
+          coordinates = tile_coordinates
+          locked_on_coordinates = @locked_on.tile_coordinates
+          delta_x = locked_on_coordinates[0] - coordinates[0]
+          delta_y = locked_on_coordinates[1] - coordinates[1]
+          if delta_x == 0 and delta_y > 0
+            @rotation = 7
+          elsif delta_x == 0 and delta_y < 0
+            @rotation = 1
+          elsif delta_x > 0 and delta_y == 0
+            @rotation = 5
+          elsif delta_x < 0 and delta_y == 0
+            @rotation = 3
+          elsif delta_x > 0 and delta_y > 0
+            @rotation = 8
+          elsif delta_x > 0 and delta_y < 0
+            @rotation = 2
+          elsif delta_x < 0 and delta_y > 0
+            @rotation = 6
+          elsif delta_x < 0 and delta_y < 0
+            @rotation = 0
+          end
         else
           @locked_on = nil
         end
@@ -50,7 +71,7 @@ class Turret
 
   def draw
     if @placed
-      @sprite[0].draw @x, @y, 2
+      @sprite[@rotation].draw @x, @y, 2
     else
       @sprite[0].draw @x, @y, 10, 1, 1, @color
       @tiles_in_range&.each do |tile|

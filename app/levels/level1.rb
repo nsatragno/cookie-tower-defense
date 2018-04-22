@@ -1,5 +1,5 @@
 class Level1
-  ENEMY_SPAWN_TIME = 60
+  ENEMY_SPAWN_TIME = 120
 
   attr_reader :map
   attr_reader :path
@@ -23,8 +23,7 @@ class Level1
   end
 
   def spawn_enemy
-    #if @timer % ENEMY_SPAWN_TIME == 0
-    if @timer == 1
+    if @timer % ENEMY_SPAWN_TIME == 0
       BasicEnemy.new(@spawn)
     end
   end

@@ -15,6 +15,7 @@ class Game
     @cursor = Cursor.new
     @turrets = []
     @enemies = []
+    @bullets = []
     @font = Gosu::Font.new 20
   end
 
@@ -35,6 +36,7 @@ class Game
       enemy.update
       enemy.remove?
     end
+    @bullets.each &:update
 
     if @placing_turret
       @placing_turret.update
@@ -63,6 +65,7 @@ class Game
       @level.draw
       @toolbar.draw
       @turrets.each &:draw
+      @bullets.each &:draw
       @enemies.each &:draw
 
       @placing_turret&.draw
@@ -84,5 +87,9 @@ class Game
 
   def dup_map
     @map.map do |line| line.dup end
+  end
+
+  def add_bullet(bullet)
+    @bullets << bullet
   end
 end
