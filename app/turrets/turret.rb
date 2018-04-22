@@ -1,4 +1,4 @@
-class Turret
+class Turret < Button
   attr_reader :placed
   attr_reader :changed_tiles
 
@@ -12,11 +12,19 @@ class Turret
     @max_cooldown = cooldown
     @cooldown = 0
     @rotation = 0
+    @status = :idle
   end
 
   def update
     @cooldown -= 1 if @cooldown >= 0
     if @placed
+      if Input::button_pressed?(Input::MS_LEFT) and
+         @x <= Window.instance.mouse_x / 2 and Window.instance.mouse_x / 2 <= @x + 32 and
+         @y <= Window.instance.mouse_y / 2 and Window.instance.mouse_y / 2 <= @y + 32
+         @cooldown = 0
+         @status = :clicked
+      end
+
       if @locked_on
         if @tiles_in_range.find_index @locked_on.tile_coordinates and not @locked_on.remove?
           coordinates = tile_coordinates
@@ -111,7 +119,13 @@ class Turret
 
   def draw
     if @placed
-      @sprite[@rotation].draw @x, @y, 2
+      if @status == :idle
+        color = 0xff_ffffff
+      else
+        @status = :idle
+        color = 0xff_0000ff
+      end
+      @sprite[@rotation].draw @x, @y, 2, 1, 1, color
     else
       @sprite[0].draw @x, @y, 10, 1, 1, @color
       @tiles_in_range&.each do |tile|
