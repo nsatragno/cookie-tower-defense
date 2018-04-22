@@ -1,4 +1,4 @@
-class DoughPile < Button
+class DoughPile < ImageButton
   attr_reader :tile_x
   attr_reader :tile_y
 

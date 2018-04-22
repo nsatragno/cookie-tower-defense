@@ -6,10 +6,14 @@ class Window < Gosu::Window
 
   include Singleton
 
+  attr_writer :screen
+
   def initialize
     super WINDOW_WIDTH, WINDOW_HEIGHT
     self.caption = GAME_TITLE
-    @screen = Game.instance
+    @screen = Menu.new
+    @cursor = Cursor.new
+    @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
   end
 
   def update
@@ -19,5 +23,7 @@ class Window < Gosu::Window
 
   def draw
     @screen.draw
+    @cursor.draw
+    @font.draw Gosu.fps, 0, 0, 1
   end
 end

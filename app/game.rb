@@ -13,7 +13,6 @@ class Game
   def initialize
     @level = Level1.new
     @toolbar = Toolbar.new
-    @cursor = Cursor.new
     @turrets = []
     @enemies = []
     @bullets = []
@@ -106,7 +105,6 @@ class Game
 
   def draw
     Gosu.scale(2) do
-      @font.draw Gosu.fps, 0, 0, 1
       @level.draw
       @toolbar.draw
       @turrets.each &:draw
@@ -120,7 +118,6 @@ class Game
       @master_cookie.draw
       @path.draw
     end
-    @cursor.draw
   end
 
   def is_occupied?(x, y)

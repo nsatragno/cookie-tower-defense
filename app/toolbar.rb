@@ -7,11 +7,11 @@ class Toolbar
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
     @sprite = Gosu::Image.new "sprites/iconbar.png", retro: true
-    basic_turret_button = Button.new BUTTON_MARGIN, Y_OFFSET + BUTTON_MARGIN, "sprites/basic_turret_icon.png", 24, 24 do
+    basic_turret_button = ImageButton.new BUTTON_MARGIN, Y_OFFSET + BUTTON_MARGIN, "sprites/basic_turret_icon.png", 24, 24 do
       Game.instance.placing_turret = BasicTurret.new
     end
 
-    cookie_shooter_button = Button.new BUTTON_MARGIN + BUTTON_SPACING, Y_OFFSET + BUTTON_MARGIN, "sprites/cookie_shooter_icon.png", 24, 24 do
+    cookie_shooter_button = ImageButton.new BUTTON_MARGIN + BUTTON_SPACING, Y_OFFSET + BUTTON_MARGIN, "sprites/cookie_shooter_icon.png", 24, 24 do
       Game.instance.placing_turret = CookieShooterTurret.new
     end
 
