@@ -1,4 +1,9 @@
 class Button
+  attr_reader :x
+  attr_reader :y
+  attr_reader :width
+  attr_reader :height
+
   def initialize(x, y, width = 32, height = 32, &action)
     @x = x
     @y = y

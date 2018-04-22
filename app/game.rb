@@ -7,6 +7,7 @@ class Game
   attr_reader :enemies
   attr_reader :path
   attr_reader :master_cookie
+  attr_reader :toolbar
 
   include Singleton
 
@@ -21,6 +22,8 @@ class Game
     @dough = 1000
     @font = Gosu::Font.new 20
     @path = PathFinder.new build_map, @level.spawn, @level.base
+
+    @tutorial = Tutorial.new
   end
 
   def build_map
@@ -46,6 +49,13 @@ class Game
       return @pause.update
     elsif Input::button_pressed? Input::ESCAPE
       return @pause = PauseMenu.new
+    end
+
+    if @tutorial
+      @tutorial.update
+      if @tutorial.remove?
+        @tutorial = nil
+      end
     end
 
     map_changed = false
@@ -126,6 +136,7 @@ class Game
       @new_path&.draw
 
       @master_cookie.draw
+      @tutorial&.draw
       @path.draw
       @pause&.draw
     end

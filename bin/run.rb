@@ -20,6 +20,7 @@ require_relative '../app/path_finder.rb'
 require_relative '../app/pause_menu.rb'
 require_relative '../app/rect.rb'
 require_relative '../app/toolbar.rb'
+require_relative '../app/tutorial.rb'
 require_relative '../app/window.rb'
 
 require_relative '../app/enemies/enemy.rb'

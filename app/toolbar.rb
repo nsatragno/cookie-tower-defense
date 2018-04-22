@@ -4,6 +4,8 @@ class Toolbar
   BUTTON_SPACING = 25
   HEIGHT = 40
 
+  attr_reader :buttons
+
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
     @sprite = Gosu::Image.new "sprites/iconbar.png", retro: true

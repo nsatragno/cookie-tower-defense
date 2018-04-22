@@ -24,7 +24,7 @@ class Level1
   end
 
   def dough_piles
-    [DoughPile.new(1, 1, 10), DoughPile.new(1, 2, 10), DoughPile.new(2, 2, 1)]
+    [DoughPile.new(1, 1, 10), DoughPile.new(1, 2, 10), DoughPile.new(2, 2, 10)]
   end
 
   def master_cookie
