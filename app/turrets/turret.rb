@@ -2,17 +2,20 @@ class Turret
   attr_reader :placed
   attr_reader :changed_tiles
 
-  def initialize(sprite_name, range, cost)
+  def initialize(sprite_name, range, cost, cooldown)
     @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32)
     @placed = false
     @range = range
     @cost = cost
     @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
     @color = 0x99_ff0000
+    @max_cooldown = cooldown
+    @cooldown = 0
     @rotation = 0
   end
 
   def update
+    @cooldown -= 1 if @cooldown >= 0
     if @placed
       if @locked_on
         if @tiles_in_range.find_index @locked_on.tile_coordinates and not @locked_on.remove?
@@ -73,6 +76,33 @@ class Turret
         @remove = true
       end
     end
+  end
+
+  def maybe_fire
+    return if @cooldown > 0
+
+    @cooldown = @max_cooldown
+    case @rotation
+    when 0
+      dx, dy = -1, -1
+    when 1
+      dx, dy = 0, -1
+    when 2
+      dx, dy = 1, -1
+    when 3
+      dx, dy = -1, 0
+    when 5
+      dx, dy = 1, 0
+    when 6
+      dx, dy = -1, 1
+    when 7
+      dx, dy = 0, 1
+    when 8
+      dx, dy = 1, 1
+    else
+      raise "Unexpected rotation value #{@rotation}"
+    end
+    fire!(dx, dy)
   end
 
   def remove?

@@ -24,6 +24,7 @@ require_relative '../app/levels/level1.rb'
 
 require_relative '../app/projectiles/projectile.rb'
 require_relative '../app/projectiles/cookie.rb'
+require_relative '../app/projectiles/cream.rb'
 
 require_relative '../app/turrets/turret.rb'
 require_relative '../app/turrets/basic_turret.rb'

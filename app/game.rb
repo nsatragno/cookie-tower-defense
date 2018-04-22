@@ -19,7 +19,7 @@ class Game
     @enemies = []
     @bullets = []
     @dough_piles = @level.dough_piles
-    @dough = 0
+    @dough = 1000
     @font = Gosu::Font.new 20
     @path = PathFinder.new build_map, @level.spawn, @level.base
   end

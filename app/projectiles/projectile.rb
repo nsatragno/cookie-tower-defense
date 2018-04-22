@@ -1,11 +1,11 @@
 class Projectile
-  def initialize(x, y, size, dx, dy, sprite_name, damage = 1)
+  def initialize(x, y, size, dx, dy, sprite, damage = 1)
     @x = x
     @y = y
     @dx = dx
     @dy = dy
     @size = size
-    @sprite = Gosu::Image.new sprite_name
+    @sprite = sprite
     @damage = damage
     @status = :alive
   end
