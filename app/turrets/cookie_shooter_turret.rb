@@ -2,7 +2,7 @@ class CookieShooterTurret < Turret
   BULLET_COOLDOWN = 10
   def initialize
     @cooldown = 0
-    super("sprites/cookie_shooter_sheet.png", 2)
+    super("sprites/cookie_shooter_sheet.png", 2, 20)
   end
 
   def update

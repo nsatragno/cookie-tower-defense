@@ -2,10 +2,11 @@ class Turret
   attr_reader :placed
   attr_reader :changed_tiles
 
-  def initialize(sprite_name, range)
+  def initialize(sprite_name, range, cost)
     @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32)
     @placed = false
     @range = range
+    @cost = cost
     @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
     @color = 0x99_ff0000
     @rotation = 0
@@ -55,18 +56,27 @@ class Turret
       if @changed_tiles
         @tiles_in_range = tiles_in_range
       end
-      if Game.instance.is_occupied? @x / 32, @y / 32
-        @color = 0x99_ff0000
-      else
+      if can_place?
         @color = 0x44_ffffff
+      else
+        @color = 0x99_ff0000
       end
 
       if Input::button_pressed? Input::MS_LEFT
-        unless Game.instance.is_occupied? @x / 32, @y / 32
+        if can_place?
           @placed = true
+          Game.instance.dough = Game.instance.dough - @cost
         end
       end
+
+      if Input::button_pressed? Input::MS_RIGHT
+        @remove = true
+      end
     end
+  end
+
+  def remove?
+    @remove
   end
 
   def draw
@@ -110,5 +120,11 @@ class Turret
   def normalize_coordinates(x, y)
     [(x / 32 / 2).floor * 32,
      (y / 32 / 2).floor * 32]
+  end
+
+  private
+  def can_place?
+    Game.instance.dough >= @cost and
+    not Game.instance.is_occupied? @x / 32, @y / 32
   end
 end

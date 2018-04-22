@@ -50,7 +50,6 @@ class Game
       pile.update
       if pile.remove?
         map_changed = true
-        @map[pile.x / 32][pile.y / 32] = :free
         next true
       end
       false
@@ -74,24 +73,28 @@ class Game
 
     if @placing_turret
       @placing_turret.update
-      new_map = dup_map
-      coordinates = @placing_turret.tile_coordinates
-      new_map[coordinates[0]][coordinates[1]] = :obstacle
-      if @placing_turret.changed_tiles
-        @new_path = PathFinder.new new_map, @level.spawn, @level.base, 0x33_0000ff
-      end
-
-      if @placing_turret.placed
-        map_changed = true
-        @turrets << @placing_turret
-        @new_path = nil
+      if @placing_turret.remove?
         @placing_turret = nil
+      else
+        new_map = dup_map
+        coordinates = @placing_turret.tile_coordinates
+        new_map[coordinates[0]][coordinates[1]] = :obstacle
+        if @placing_turret.changed_tiles
+          @new_path = PathFinder.new new_map, @level.spawn, @level.base, 0x33_0000ff
+        end
+
+        if @placing_turret.placed
+          map_changed = true
+          @turrets << @placing_turret
+          @new_path = nil
+          @placing_turret = nil
+        end
       end
     end
     @toolbar.update
 
     if map_changed
-      @path = PathFinder.new @map, @level.spawn, @level.base, 0x33_00ff00
+      @path = PathFinder.new build_map, @level.spawn, @level.base, 0x33_00ff00
       @enemies.each do |enemy|
         enemy.path = @path.path
       end
