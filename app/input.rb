@@ -7,8 +7,9 @@ class Input
   UP = Gosu::KB_UP
   DOWN = Gosu::KB_DOWN
   FIRE = Gosu::KB_Z
+  ESCAPE = Gosu::KB_ESCAPE
 
-  BUTTONS = [MS_LEFT, MS_RIGHT, LEFT, RIGHT, UP, DOWN, FIRE]
+  BUTTONS = [MS_LEFT, MS_RIGHT, LEFT, RIGHT, UP, DOWN, FIRE, ESCAPE]
 
   @@pressed = {}
 
@@ -32,6 +33,8 @@ class Input
       Gosu.button_down?(Gosu::KB_DOWN) or Gosu.button_down?(Gosu::GP_DOWN)
     when FIRE
       Gosu.button_down?(Gosu::KB_Z) or Gosu.button_down?(Gosu::GP_0_BUTTON_0)
+    when ESCAPE
+      Gosu.button_down?(Gosu::KB_ESCAPE)
     else
       raise "Unknown button #{button}"
     end

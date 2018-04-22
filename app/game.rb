@@ -37,7 +37,17 @@ class Game
     map
   end
 
+  def resume!
+    @pause = nil
+  end
+
   def update
+    if @pause
+      return @pause.update
+    elsif Input::button_pressed? Input::ESCAPE
+      return @pause = PauseMenu.new
+    end
+
     map_changed = false
 
     @level.update
@@ -117,6 +127,7 @@ class Game
 
       @master_cookie.draw
       @path.draw
+      @pause&.draw
     end
   end
 
