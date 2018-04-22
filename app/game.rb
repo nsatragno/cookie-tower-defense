@@ -98,6 +98,7 @@ class Game
     new_map = dup_map
     new_map[x][y] = :obstacle
     new_path = PathFinder.new(new_map, @level.spawn, @level.base)
+    return true unless new_path.valid
     @enemies.find do |enemy|
       not new_path.accessible? enemy.tile_coordinates
     end

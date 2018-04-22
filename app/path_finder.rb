@@ -80,6 +80,7 @@ class PathFinder
   end
 
   def accessible?(node)
+    return false unless node
     @dist[node[0]][node[1]] != Float::INFINITY
   end
 
