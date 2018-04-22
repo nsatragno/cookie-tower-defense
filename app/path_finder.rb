@@ -1,5 +1,6 @@
 class PathFinder
   attr_reader :valid
+  attr_reader :path
   attr_writer :color
 
   def initialize(map, source, dest, color = 0x33_00ff00)

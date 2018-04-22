@@ -1,9 +1,16 @@
 class Level1
+  ENEMY_SPAWN_TIME = 60
+
   attr_reader :map
   attr_reader :path
+  attr_reader :spawn
+  attr_reader :base
 
   def initialize
+    @timer = 0
     @tileset = Tileset.new "level1.json"
+    @spawn = [19, 1]
+    @base = [0, 5]
 
     @map = []
     (0...Tileset::WIDTH).each do |x|
@@ -15,7 +22,15 @@ class Level1
     end
   end
 
+  def spawn_enemy
+    #if @timer % ENEMY_SPAWN_TIME == 0
+    if @timer == 1
+      BasicEnemy.new(@spawn)
+    end
+  end
+
   def update
+    @timer += 1
   end
 
   def draw

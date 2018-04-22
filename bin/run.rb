@@ -14,6 +14,9 @@ require_relative '../app/path_finder.rb'
 require_relative '../app/toolbar.rb'
 require_relative '../app/window.rb'
 
+require_relative '../app/enemies/enemy.rb'
+require_relative '../app/enemies/basic_enemy.rb'
+
 require_relative '../app/levels/level1.rb'
 
 require_relative '../app/turrets/turret.rb'

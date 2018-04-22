@@ -1,6 +1,7 @@
 class Game
   attr_accessor :placing_turret
   attr_reader :map
+  attr_reader :path
 
   include Singleton
 
@@ -8,14 +9,19 @@ class Game
     @level = Level1.new
     @spawn = [19, 1]
     @base = [0, 5]
-    @path = PathFinder.new @level.map, @spawn, @base
+    @path = PathFinder.new @level.map, @level.spawn, @level.base
     @toolbar = Toolbar.new
     @cursor = Cursor.new
     @turrets = []
+    @enemies = []
   end
 
   def update
     @level.update
+    new_enemy = @level.spawn_enemy
+    if new_enemy
+      @enemies << new_enemy
+    end
     @map = @level.map
 
     @turrets.each do |turret|
@@ -23,13 +29,14 @@ class Game
       coordinates = turret.tile_coordinates
       @map[coordinates[0]][coordinates[1]] = :obstacle
     end
+    @enemies.each &:update
 
     if @placing_turret
       @placing_turret.update
       new_map = dup_map
       coordinates = @placing_turret.tile_coordinates
       new_map[coordinates[0]][coordinates[1]] = :obstacle
-      @new_path = PathFinder.new new_map, @spawn, @base, 0x33_0000ff
+      @new_path = PathFinder.new new_map, @level.spawn, @level.base, 0x33_0000ff
 
       if @placing_turret.placed
         @turrets << @placing_turret
@@ -48,6 +55,7 @@ class Game
       @level.draw
       @toolbar.draw
       @turrets.each &:draw
+      @enemies.each &:draw
 
       @placing_turret&.draw
       @new_path&.draw
@@ -63,7 +71,7 @@ class Game
 
     new_map = dup_map
     new_map[x][y] = :obstacle
-    not PathFinder.new(new_map, @spawn, @base).valid
+    not PathFinder.new(new_map, @level.spawn, @level.base).valid
   end
 
   def dup_map
