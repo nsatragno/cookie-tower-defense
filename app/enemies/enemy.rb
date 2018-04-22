@@ -80,7 +80,9 @@ class Enemy
         unless next_tile_index
           # the path was blocked. find a new one.
           @path = Game.instance.path.calculate_path(current_tile)
-          if @path.empty?
+          if @next_tile == Game.instance.level.base
+            @path = []
+          elsif @path.empty?
             try_tile = [current_tile[0] + 1, current_tile[1]]
             unless Game.instance.path.accessible? try_tile
               try_tile = [current_tile[0] + 1, current_tile[1]]
