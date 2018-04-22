@@ -86,6 +86,11 @@ class Game
     return true if x < 0 or x >= Tileset::WIDTH or y < 0 or y >= Tileset::HEIGHT
     return true if @map[x][y] != :free
 
+    return true if @enemies.find do |enemy|
+      coordinates = enemy.tile_coordinates
+      coordinates == [x, y]
+    end
+
     new_map = dup_map
     new_map[x][y] = :obstacle
     not PathFinder.new(new_map, @level.spawn, @level.base).valid

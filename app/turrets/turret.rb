@@ -7,7 +7,6 @@ class Turret
     @placed = false
     @range = range
     @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
-    @update_new_path = true
     @color = 0x99_ff0000
     @rotation = 0
   end
@@ -55,11 +54,11 @@ class Turret
 
       if @changed_tiles
         @tiles_in_range = tiles_in_range
-        if Game.instance.is_occupied? @x / 32, @y / 32
-          @color = 0x99_ff0000
-        else
-          @color = 0x44_ffffff
-        end
+      end
+      if Game.instance.is_occupied? @x / 32, @y / 32
+        @color = 0x99_ff0000
+      else
+        @color = 0x44_ffffff
       end
 
       if Input::button_pressed? Input::MS_LEFT
