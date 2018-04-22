@@ -29,7 +29,10 @@ class Game
       coordinates = turret.tile_coordinates
       @map[coordinates[0]][coordinates[1]] = :obstacle
     end
-    @enemies.each &:update
+    @enemies.delete_if do |enemy|
+      enemy.update
+      enemy.remove?
+    end
 
     if @placing_turret
       @placing_turret.update
