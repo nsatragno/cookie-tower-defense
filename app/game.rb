@@ -36,7 +36,10 @@ class Game
       enemy.update
       enemy.remove?
     end
-    @bullets.each &:update
+    @bullets.delete_if do |bullet|
+      bullet.update
+      bullet.remove?
+    end
 
     if @placing_turret
       @placing_turret.update

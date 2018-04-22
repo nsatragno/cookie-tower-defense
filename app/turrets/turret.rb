@@ -37,6 +37,7 @@ class Turret
           elsif delta_x < 0 and delta_y < 0
             @rotation = 0
           end
+          maybe_fire
         else
           @locked_on = nil
         end

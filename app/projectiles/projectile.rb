@@ -14,11 +14,11 @@ class Projectile
   end
 
   def remove?
-    @x < 0 or @x >= Window::WIDTH or
-    @y < 0 or @y >= Window::HEIGHT
+    @x < 0 or @x >= Window::WINDOW_WIDTH or
+    @y < 0 or @y >= Window::WINDOW_HEIGHT
   end
 
   def draw
-    @sprite.draw @x, @y, @size, @size, 2
+    @sprite.draw @x, @y, 2
   end
 end
