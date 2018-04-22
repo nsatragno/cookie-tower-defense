@@ -10,7 +10,7 @@ class Level1
     @timer = 0
     @tileset = Tileset.new "level1.json"
     @spawn = [19, 2]
-    @base = [0, 5]
+    @base = [1, 5]
 
     @map = []
     (0...Tileset::WIDTH).each do |x|
@@ -25,6 +25,10 @@ class Level1
 
   def dough_piles
     [DoughPile.new(1, 1, 10), DoughPile.new(1, 2, 10), DoughPile.new(2, 2, 1)]
+  end
+
+  def master_cookie
+    MasterCookie.new(*@base)
   end
 
   def spawn_enemy

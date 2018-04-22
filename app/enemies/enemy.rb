@@ -103,6 +103,7 @@ class Enemy
       end
       if current_tile == Game.instance.level.base
         @status = :hit
+        Game.instance.master_cookie.take_damage
         return
       end
       @next_tile = @path[next_tile_index]

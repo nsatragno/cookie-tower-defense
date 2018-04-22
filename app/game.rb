@@ -6,18 +6,18 @@ class Game
   attr_reader :level
   attr_reader :enemies
   attr_reader :path
+  attr_reader :master_cookie
 
   include Singleton
 
   def initialize
     @level = Level1.new
-    @spawn = [19, 1]
-    @base = [0, 5]
     @toolbar = Toolbar.new
     @cursor = Cursor.new
     @turrets = []
     @enemies = []
     @bullets = []
+    @master_cookie = @level.master_cookie
     @dough_piles = @level.dough_piles
     @dough = 1000
     @font = Gosu::Font.new 20
@@ -117,6 +117,7 @@ class Game
       @dough_piles.each &:draw
       @new_path&.draw
 
+      @master_cookie.draw
       @path.draw
     end
     @cursor.draw
