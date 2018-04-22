@@ -76,6 +76,7 @@ class PathFinder
       path.unshift node
       node = @prev[node[0]][node[1]]
     end
+    path.unshift @dest
     path.reverse
   end
 

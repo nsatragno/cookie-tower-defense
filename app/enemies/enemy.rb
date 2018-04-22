@@ -17,7 +17,6 @@ class Enemy
 
     @status = :moving
     @path = Game.instance.path.path
-    @path << Game.instance.level.base
 
     move
   end
@@ -98,7 +97,6 @@ class Enemy
             end
             @path = Game.instance.path.calculate_path(try_tile)
           end
-          @path << Game.instance.level.base
           next_tile_index = -1
         end
         next_tile_index += 1
