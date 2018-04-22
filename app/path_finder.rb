@@ -63,7 +63,6 @@ class PathFinder
     if accessible? source
       @valid = true
     else
-      puts "invalid"
       @valid = false
       return
     end

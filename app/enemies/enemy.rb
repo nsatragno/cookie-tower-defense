@@ -16,7 +16,8 @@ class Enemy
     @sprites = Gosu::Image.load_tiles(sprite_name, size, size, retro: true)
 
     @status = :moving
-    @path = Game.instance.path
+    @path = Game.instance.path.path
+    @path << Game.instance.level.base
 
     move
   end
@@ -29,6 +30,10 @@ class Enemy
 
   def tile_coordinates
     [(@x + 16) / 32, (@y + 16) / 32]
+  end
+
+  def occupied_coordinates
+    [[@x / 32, @y / 32], [(@x + @size) / 32, (@y + @size) / 32]]
   end
 
   def draw
@@ -71,26 +76,29 @@ class Enemy
        @y % 32 == (32 - @size) / 2 && @next_tile
       # we are in the center of the tile
       if @next_tile
-        next_tile_index = @path.path.find_index(current_tile)
+        next_tile_index = @path.find_index(current_tile)
         unless next_tile_index
           # the path was blocked. find a new one.
-          @path = PathFinder.new(
-            Game.instance.map, current_tile, Game.instance.level.base)
+          @path = Game.instance.path.calculate_path(current_tile)
+          @path << Game.instance.level.base
+          if @path.empty?
+            @path = [@next_tile]
+          end
           @next_tile = nil
           return move
         end
         next_tile_index += 1
       end
-      if next_tile_index == @path.path.size
+      if current_tile == Game.instance.level.base
         @status = :hit
         return
       end
-      @next_tile = @path.path[next_tile_index]
+      @next_tile = @path[next_tile_index]
 
       @dx = (@next_tile[0] - current_tile[0]) * @speed
       @dy = (@next_tile[1] - current_tile[1]) * @speed
     elsif not @next_tile
-      @next_tile = @path.path[0]
+      @next_tile = @path[0]
       @dx = (@next_tile[0] - current_tile[0]) * @speed
       @dy = (@next_tile[1] - current_tile[1]) * @speed
     end

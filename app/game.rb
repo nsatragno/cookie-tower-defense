@@ -58,7 +58,7 @@ class Game
         @turrets << @placing_turret
         @path = @new_path
         @enemies.each do |enemy|
-          enemy.path = @path
+          enemy.path = @path.path
         end
         @path.color = 0x33_00ff00
         @new_path = nil
@@ -91,8 +91,8 @@ class Game
     return true if @map[x][y] != :free
 
     return true if @enemies.find do |enemy|
-      coordinates = enemy.tile_coordinates
-      coordinates == [x, y]
+      coordinates = enemy.occupied_coordinates
+      coordinates.find_index [x, y]
     end
 
     new_map = dup_map
