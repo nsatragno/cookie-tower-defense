@@ -15,7 +15,7 @@ class Turret
   def update
     if @placed
       if @locked_on
-        if @tiles_in_range.find_index @locked_on.tile_coordinates
+        if @tiles_in_range.find_index @locked_on.tile_coordinates and not @locked_on.remove?
           coordinates = tile_coordinates
           locked_on_coordinates = @locked_on.tile_coordinates
           delta_x = locked_on_coordinates[0] - coordinates[0]

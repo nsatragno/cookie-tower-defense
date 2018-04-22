@@ -40,7 +40,7 @@ class Enemy
     end
     if @status == :damaged
       color = 0x33_ff0000
-      @status = :alive
+      @status = :moving
     else
       color = 0xff_ffffff
     end
@@ -53,7 +53,7 @@ class Enemy
 
   def take_damage!(damage)
     @hp -= damage
-    status = @hp <= 0 ? :dead : :damaged
+    @status = @hp <= 0 ? :dead : :damaged
   end
 
   def hitbox
