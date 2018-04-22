@@ -3,6 +3,7 @@ require 'bundler/setup'
 
 require 'gosu'
 require 'json'
+require 'matrix'
 require 'singleton'
 
 require_relative '../app/button.rb'

@@ -6,6 +6,7 @@ class Projectile
     @dy = dy
     @size = size
     @sprite = Gosu::Image.new sprite_name
+    @status = :alive
   end
 
   def update
@@ -15,7 +16,8 @@ class Projectile
 
   def remove?
     @x < 0 or @x >= Window::WINDOW_WIDTH or
-    @y < 0 or @y >= Window::WINDOW_HEIGHT
+    @y < 0 or @y >= Window::WINDOW_HEIGHT or
+    @status != :alive
   end
 
   def draw

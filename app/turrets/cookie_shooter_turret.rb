@@ -30,6 +30,6 @@ class CookieShooterTurret < Turret
     when 8
       dx, dy = 1, 1
     end
-    Game.instance.add_bullet(Cookie.new @x, @y, dx, dy)
+    Game.instance.add_bullet(Cookie.new @x + 11, @y + 2, dx, dy)
   end
 end
