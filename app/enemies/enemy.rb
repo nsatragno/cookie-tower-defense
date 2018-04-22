@@ -6,6 +6,7 @@ class Enemy
   attr_writer :path
 
   def initialize(tile_coordinates, hp, size, speed, sprite_name)
+    @max_hp = hp
     @hp = hp
     @size = size
     @speed = speed
@@ -14,6 +15,7 @@ class Enemy
     @y = tile_coordinates[1] * 32 + (32 - size) / 2
 
     @sprites = Gosu::Image.load_tiles(sprite_name, size, size, retro: true)
+    @healthbar = Gosu::Image.new "sprites/healthbar.png"
 
     @status = :moving
     @path = Game.instance.path.path
@@ -52,6 +54,16 @@ class Enemy
       color = 0xff_ffffff
     end
     @sprites[sprite_index].draw @x, @y, 2, 1, 1, color
+
+    if @hp < @max_hp
+      healthbar_x = @x - (32 - size) / 2
+      healthbar_y = @y + size
+      @healthbar.draw healthbar_x, healthbar_y, 2
+
+      hp_size = 26 * @hp / @max_hp
+      color = 0xff_ff0000
+      Gosu::draw_rect healthbar_x + 3, healthbar_y + 5, hp_size, 4, color, 3
+    end
   end
 
   def remove?
