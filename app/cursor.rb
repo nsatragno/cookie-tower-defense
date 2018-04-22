@@ -4,6 +4,6 @@ class Cursor
   end
 
   def draw
-    @sprite.draw(Window.instance.mouse_x, Window.instance.mouse_y, 1000)
+    @sprite.draw((Window.instance.mouse_x / 2).round * 2, (Window.instance.mouse_y / 2).round * 2, 1000)
   end
 end
