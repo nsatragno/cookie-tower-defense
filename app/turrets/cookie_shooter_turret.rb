@@ -1,15 +1,17 @@
 class CookieShooterTurret < Turret
-  BULLET_COOLDOWN = 60
+  BULLET_COOLDOWN = 10
   def initialize
     @cooldown = 0
     super("sprites/cookie_shooter_sheet.png", 2)
   end
 
+  def update
+    @cooldown -= 1 if @cooldown > 0
+    super
+  end
+
   def maybe_fire
-    if @cooldown > 0
-      @cooldown -= 1
-      return
-    end
+    return if @cooldown > 0
 
     @cooldown = BULLET_COOLDOWN
     case @rotation
@@ -29,6 +31,8 @@ class CookieShooterTurret < Turret
       dx, dy = 0, 1
     when 8
       dx, dy = 1, 1
+    else
+      raise "Unexpected rotation value #{@rotation}"
     end
     Game.instance.add_bullet(Cookie.new @x + 11, @y + 2, dx, dy)
   end

@@ -1,6 +1,6 @@
 class Cookie < Projectile
-  SPEED = 5
-  LIFETIME = 32 * 2 / 5
+  SPEED = 3
+  LIFETIME = 32 * 2.5 / SPEED
 
   def initialize(x, y, dx, dy)
     dx, dy = (Vector[dx, dy].normalize * SPEED).to_a

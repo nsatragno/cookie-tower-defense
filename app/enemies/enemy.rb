@@ -38,11 +38,26 @@ class Enemy
     else
       sprite_index = 3
     end
-    @sprites[sprite_index].draw @x, @y, 2
+    if @status == :damaged
+      color = 0x33_ff0000
+      @status = :alive
+    else
+      color = 0xff_ffffff
+    end
+    @sprites[sprite_index].draw @x, @y, 2, 1, 1, color
   end
 
   def remove?
     @status == :dead or @status == :hit
+  end
+
+  def take_damage!(damage)
+    @hp -= damage
+    status = @hp <= 0 ? :dead : :damaged
+  end
+
+  def hitbox
+    Rect.new(@x, @y, @size, @size)
   end
 
   private

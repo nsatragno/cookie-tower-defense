@@ -12,6 +12,7 @@ require_relative '../app/game.rb'
 require_relative '../app/input.rb'
 require_relative '../app/tileset.rb'
 require_relative '../app/path_finder.rb'
+require_relative '../app/rect.rb'
 require_relative '../app/toolbar.rb'
 require_relative '../app/window.rb'
 
