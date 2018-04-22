@@ -80,12 +80,24 @@ class Enemy
         unless next_tile_index
           # the path was blocked. find a new one.
           @path = Game.instance.path.calculate_path(current_tile)
-          @path << Game.instance.level.base
           if @path.empty?
-            @path = [@next_tile]
+            try_tile = [current_tile[0] + 1, current_tile[1]]
+            unless Game.instance.path.accessible? try_tile
+              try_tile = [current_tile[0] + 1, current_tile[1]]
+            end
+            unless Game.instance.path.accessible? try_tile
+              try_tile = [current_tile[0], current_tile[1] + 1]
+            end
+            unless Game.instance.path.accessible? try_tile
+              try_tile = [current_tile[0] - 1, current_tile[1]]
+            end
+            unless Game.instance.path.accessible? try_tile
+              try_tile = [current_tile[0], current_tile[1] - 1]
+            end
+            @path = Game.instance.path.calculate_path(try_tile)
           end
-          @next_tile = nil
-          return move
+          @path << Game.instance.level.base
+          next_tile_index = -1
         end
         next_tile_index += 1
       end
@@ -95,26 +107,32 @@ class Enemy
       end
       @next_tile = @path[next_tile_index]
 
-      @dx = (@next_tile[0] - current_tile[0]) * @speed
-      @dy = (@next_tile[1] - current_tile[1]) * @speed
+      if @next_tile
+        @dx = (@next_tile[0] - current_tile[0]) * @speed
+        @dy = (@next_tile[1] - current_tile[1]) * @speed
+      end
     elsif not @next_tile
       @next_tile = @path[0]
-      @dx = (@next_tile[0] - current_tile[0]) * @speed
-      @dy = (@next_tile[1] - current_tile[1]) * @speed
+      if @next_tile
+        @dx = (@next_tile[0] - current_tile[0]) * @speed
+        @dy = (@next_tile[1] - current_tile[1]) * @speed
+      end
     end
 
     @x += @dx
     @y += @dy
 
     # center the entity if we offshoot the target tile
-    if @dx > 0
-      @x = [@x, @next_tile[0] * 32 + (32 - @size) / 2].min
-    elsif @dx < 0
-      @x = [@x, @next_tile[0] * 32 + (32 - @size) / 2].max
-    elsif @dy > 0
-      @y = [@y, @next_tile[1] * 32 + (32 - @size) / 2].min
-    elsif @dy < 0
-      @y = [@y, @next_tile[1] * 32 + (32 - @size) / 2].max
+    if @next_tile
+      if @dx > 0
+        @x = [@x, @next_tile[0] * 32 + (32 - @size) / 2].min
+      elsif @dx < 0
+        @x = [@x, @next_tile[0] * 32 + (32 - @size) / 2].max
+      elsif @dy > 0
+        @y = [@y, @next_tile[1] * 32 + (32 - @size) / 2].min
+      elsif @dy < 0
+        @y = [@y, @next_tile[1] * 32 + (32 - @size) / 2].max
+      end
     end
   end
 end
