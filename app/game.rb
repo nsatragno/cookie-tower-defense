@@ -14,6 +14,7 @@ class Game
     @cursor = Cursor.new
     @turrets = []
     @enemies = []
+    @font = Gosu::Font.new 20
   end
 
   def update
@@ -39,7 +40,9 @@ class Game
       new_map = dup_map
       coordinates = @placing_turret.tile_coordinates
       new_map[coordinates[0]][coordinates[1]] = :obstacle
-      @new_path = PathFinder.new new_map, @level.spawn, @level.base, 0x33_0000ff
+      if @placing_turret.changed_tiles
+        @new_path = PathFinder.new new_map, @level.spawn, @level.base, 0x33_0000ff
+      end
 
       if @placing_turret.placed
         @turrets << @placing_turret
@@ -55,6 +58,7 @@ class Game
 
   def draw
     Gosu.scale(2) do
+      @font.draw Gosu.fps, 0, 0, 1
       @level.draw
       @toolbar.draw
       @turrets.each &:draw

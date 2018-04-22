@@ -1,16 +1,32 @@
 class Turret
   attr_reader :placed
+  attr_reader :changed_tiles
 
-  def initialize(sprite_name)
+  def initialize(sprite_name, range)
     @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32)
     @placed = false
+    @range = range
     @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
+    @update_new_path = true
+    @color = 0x99_ff0000
   end
 
   def update
     if @placed
     else
+      old_coordinates = tile_coordinates
       @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
+      @changed_tiles = old_coordinates != tile_coordinates
+
+      if @changed_tiles
+        @tiles_in_range = tiles_in_range
+        if Game.instance.is_occupied? @x / 32, @y / 32
+          @color = 0x99_ff0000
+        else
+          @color = 0x44_ffffff
+        end
+      end
+
       if Input::button_pressed? Input::MS_LEFT
         unless Game.instance.is_occupied? @x / 32, @y / 32
           @placed = true
@@ -23,17 +39,38 @@ class Turret
     if @placed
       @sprite[0].draw @x, @y, 2
     else
-      if Game.instance.is_occupied? @x / 32, @y / 32
-        color = 0x99_ff0000
-      else
-        color = 0x44_ffffff
+      @sprite[0].draw @x, @y, 10, 1, 1, @color
+      @tiles_in_range&.each do |tile|
+        Gosu::draw_rect(tile[0] * 32, tile[1] * 32, 32, 32, 0x33_ffffff)
       end
-      @sprite[0].draw @x, @y, 10, 1, 1, color
     end
   end
 
   def tile_coordinates
     [@x / 32, @y / 32]
+  end
+
+  def tiles_in_range
+    coordinates = tile_coordinates
+
+    tiles = []
+    (-@range..@range).each do |x|
+      (-@range..@range).each do |y|
+        tiles << [x, y]
+      end
+    end
+
+    tiles = tiles.select do |tile|
+      tile[0].abs + tile[1].abs <= @range or
+      (tile[0] == 0 and tile[1] == 0)
+    end.map do |tile|
+      [coordinates[0] + tile[0], coordinates[1] + tile[1]]
+    end.select do |tile|
+      tile[0] >= 0 and tile[0] < Tileset::WIDTH and
+      tile[1] >= 0 and tile[1] < Tileset::HEIGHT
+    end
+
+    tiles
   end
 
   def normalize_coordinates(x, y)
