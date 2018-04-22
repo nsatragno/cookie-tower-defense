@@ -7,6 +7,8 @@ class Enemy
     @x = tile_coordinates[0] * 32 + (32 - size) / 2
     @y = tile_coordinates[1] * 32 + (32 - size) / 2
 
+    @sprites = Gosu::Image.load_tiles(sprite_name, size, size, retro: true)
+
     @status = :moving
 
     move
@@ -23,7 +25,16 @@ class Enemy
   end
 
   def draw
-    Gosu::draw_rect(@x, @y, @size, @size, 0x88_990000)
+    if @dy < 0
+      sprite_index = 0
+    elsif @dx > 0
+      sprite_index = 1
+    elsif @dy > 0
+      sprite_index = 2
+    else
+      sprite_index = 3
+    end
+    @sprites[sprite_index].draw @x, @y, 2
   end
 
   def remove?
