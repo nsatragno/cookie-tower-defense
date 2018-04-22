@@ -7,7 +7,7 @@ class PauseMenu
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
 
-    pause_button = TextButton.new(X_OFFSET, Y_OFFSET, "Pause Menu", BUTTON_WIDTH, 32) do
+    pause_button = TextButton.new(X_OFFSET, Y_OFFSET, "Pause Menu", BUTTON_WIDTH, 32, false) do
     end
 
     resume_button = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Resume game", BUTTON_WIDTH, 32) do
@@ -23,6 +23,9 @@ class PauseMenu
 
   def update
     @buttons.each &:update
+    if Input::button_pressed? Input::ESCAPE
+      Game.instance.resume!
+    end
   end
 
   def draw

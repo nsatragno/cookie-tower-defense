@@ -11,7 +11,7 @@ class Menu
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
     @fullscreen = false
 
-    title = TextButton.new(X_OFFSET, Y_OFFSET, "Cookie Tower Defense", BUTTON_WIDTH, 32) do
+    title = TextButton.new(X_OFFSET, Y_OFFSET, "Cookie Tower Defense", BUTTON_WIDTH, 32, false) do
     end
 
     start_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Start New Game", BUTTON_WIDTH, 32) do
