@@ -10,29 +10,29 @@ class PathFinder
     @dest = dest
 
     @unvisited = []
-    dist = []
-    (0..Tileset::WIDTH).each do |i|
+    @dist = []
+    (0...Tileset::WIDTH).each do |i|
       line = []
-      (0..Tileset::HEIGHT).each do |j|
+      (0...Tileset::HEIGHT).each do |j|
         line << Float::INFINITY
         @unvisited << [i, j]
       end
-      dist << line
+      @dist << line
     end
 
-    prev = dist.map do |line|
+    @prev = @dist.map do |line|
       line.map do |j|
         nil
       end
     end
 
-    dist[source[0]][source[1]] = 0
+    @dist[dest[0]][dest[1]] = 0
 
     while not @unvisited.empty?
       # find node with the least distance
       node = @unvisited[0]
       @unvisited.each do |unvisited|
-        if dist[unvisited[0]][unvisited[1]] < dist[node[0]][node[1]]
+        if @dist[unvisited[0]][unvisited[1]] < @dist[node[0]][node[1]]
           node = unvisited
         end
       end
@@ -52,27 +52,36 @@ class PathFinder
       end
 
       neighbours.each do |neighbour|
-        distance = dist[node[0]][node[1]] + 1
-        if distance < dist[neighbour[0]][neighbour[1]]
-          dist[neighbour[0]][neighbour[1]] = distance
-          prev[neighbour[0]][neighbour[1]] = node
+        distance = @dist[node[0]][node[1]] + 1
+        if distance < @dist[neighbour[0]][neighbour[1]]
+          @dist[neighbour[0]][neighbour[1]] = distance
+          @prev[neighbour[0]][neighbour[1]] = node
         end
       end
     end
 
-    if dist[dest[0]][dest[1]] == Float::INFINITY
+    if accessible? source
+      @valid = true
+    else
+      puts "invalid"
       @valid = false
       return
-    else
-      @valid = true
     end
 
-    @path = []
-    node = dest
-    while prev[node[0]][node[1]]
-      @path.unshift node
-      node = prev[node[0]][node[1]]
+    @path = calculate_path(source)
+  end
+
+  def calculate_path(node)
+    path = []
+    while @prev[node[0]][node[1]]
+      path.unshift node
+      node = @prev[node[0]][node[1]]
     end
+    path.reverse
+  end
+
+  def accessible?(node)
+    @dist[node[0]][node[1]] != Float::INFINITY
   end
 
   def draw

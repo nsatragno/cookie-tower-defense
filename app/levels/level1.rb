@@ -9,7 +9,7 @@ class Level1
   def initialize
     @timer = 0
     @tileset = Tileset.new "level1.json"
-    @spawn = [19, 1]
+    @spawn = [19, 2]
     @base = [0, 5]
 
     @map = []
