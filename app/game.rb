@@ -63,10 +63,12 @@ class Game
 
     map_changed = false
 
-    @level.update
-    new_enemy = @level.spawn_enemy
-    if new_enemy
-      @enemies << new_enemy
+    unless @tutorial
+      @level.update
+      new_enemy = @level.spawn_enemy
+      if new_enemy
+        @enemies << new_enemy
+      end
     end
     @map = build_map
 

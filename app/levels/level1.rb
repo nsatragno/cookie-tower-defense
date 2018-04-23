@@ -5,7 +5,7 @@ class Level1 < Level
     @base = [1, 5]
 
     @enemies_to_spawn = [
-      { enemy: BasicEnemy, delta: 240 },
+      { enemy: BasicEnemy, delta: 0 },
       { enemy: BasicEnemy, delta: 240 },
       { enemy: BasicEnemy, delta: 240 },
       { enemy: BasicEnemy, delta: 120 },
