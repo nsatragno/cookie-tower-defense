@@ -9,7 +9,7 @@ class MasterCookie
   def initialize(tile_x, tile_y)
     @tile_x = tile_x
     @tile_y = tile_y
-    @sprite = Gosu::Image.new "sprites/big_cookie.png", retro: true
+    @sprites = Gosu::Image.load_tiles "sprites/big_cookie.png", 96, 96, retro: true
     @status = :idle
     @collision_tiles = [
       [tile_x - 1, tile_y],
@@ -36,7 +36,13 @@ class MasterCookie
     else
       color = 0xff_ff0000
     end
-    @sprite.draw (tile_x - 1) * 32, (tile_y - 1) * 32, 1, 1, 1, color
+
+    if @status == :idle
+      @sprites[[(10 - @hp) / 2, 3].min].draw (tile_x - 1) * 32, (tile_y - 1) * 32, 1, 1, 1, color
+    else
+      @sprites[4].draw (tile_x - 1) * 32, (tile_y - 1) * 32, 1, 1, 1, color
+    end
+
     if @hp < HP
       healthbar_x = (@tile_x) * 32
       healthbar_y = (@tile_y + 1) * 32
