@@ -1,5 +1,5 @@
 class Healthbar
-  SPRITE = Gosu::Image.new "sprites/healthbar.png"
+  SPRITE = Gosu::Image.new "sprites/healthbar.png", retro: true
   def self.draw(x, y, hp, max_hp)
     SPRITE.draw x, y, 2
 

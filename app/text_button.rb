@@ -1,7 +1,7 @@
 class TextButton < Button
   FONT_SIZE = 15
 
-  SHEET = Gosu::Image.load_tiles "sprites/text_button_sheet.png", 200, 32
+  SHEET = Gosu::Image.load_tiles "sprites/text_button_sheet.png", 200, 32, retro: true
 
   attr_writer :text
 

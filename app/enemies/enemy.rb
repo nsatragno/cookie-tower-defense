@@ -18,7 +18,6 @@ class Enemy
     @y = tile_coordinates[1] * 32 + (32 - size) / 2
 
     @sprites = Gosu::Image.load_tiles(sprite_name, size, size, retro: true)
-    @healthbar = Gosu::Image.new "sprites/healthbar.png"
 
     @status = :moving
     @path = Game.instance.path.path
