@@ -16,8 +16,9 @@ class Button
   def update
     if @x <= Window.instance.mouse_x / 2 and Window.instance.mouse_x / 2 <= @x + @width and
        @y <= Window.instance.mouse_y / 2 and Window.instance.mouse_y / 2 <= @y + @height
-      if Input::button_pressed?(Input::MS_LEFT)
+      if Input::button_released?(Input::MS_LEFT)
         @action.call
+      elsif Input::button_down?(Input::MS_LEFT)
         @status = :clicked
       else
         @status = :hover
