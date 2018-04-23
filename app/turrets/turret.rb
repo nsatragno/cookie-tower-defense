@@ -3,7 +3,7 @@ class Turret < Button
   attr_reader :changed_tiles
 
   def initialize(sprite_name, range, cost, cooldown)
-    @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32)
+    @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32, retro: true)
     @placed = false
     @range = range
     @cost = cost
