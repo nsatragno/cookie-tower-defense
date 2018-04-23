@@ -141,7 +141,7 @@ class Turret < Button
   end
 
   def tile_coordinates
-    [@x / 32, @y / 32]
+    [[@x.abs / 32, 19].min, [@y.abs / 32, 19].min]
   end
 
   def tiles_in_range
