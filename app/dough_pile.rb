@@ -2,7 +2,7 @@ class DoughPile < Button
   attr_reader :tile_x
   attr_reader :tile_y
 
-  SHEET = Gosu::Image.load_tiles "sprites/dough.png", 32, 48
+  SHEET = Gosu::Image.load_tiles "sprites/dough.png", 32, 48, retro: true
 
   def initialize(tile_x, tile_y, dough)
     @dough = dough
