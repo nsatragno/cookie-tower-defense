@@ -60,6 +60,6 @@ class Level2 < Level
   end
 
   def next
-    Level2.new
+    Level3.new
   end
 end
