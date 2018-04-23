@@ -146,11 +146,11 @@ class Game
 
       @placing_turret&.draw
       @dough_piles.each &:draw
-      @new_path&.draw
 
       @master_cookie.draw
       @tutorial&.draw
-      @path.draw
+      #@new_path&.draw
+      #@path.draw
       @pause&.draw
     end
   end

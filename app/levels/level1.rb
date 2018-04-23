@@ -1,12 +1,12 @@
 class Level1 < Level
   def initialize
     @tileset = Tileset.new "level1.json"
-    @spawn = [19, 2]
+    @spawn = [19, 1]
     @base = [1, 5]
 
     @enemies_to_spawn = [
       { enemy: BasicEnemy, delta: 0 },
-      #{ enemy: BasicEnemy, delta: 240 },
+      { enemy: BasicEnemy, delta: 240 },
       #{ enemy: BasicEnemy, delta: 240 },
       #{ enemy: BasicEnemy, delta: 120 },
       #{ enemy: BasicEnemy, delta: 120 },
