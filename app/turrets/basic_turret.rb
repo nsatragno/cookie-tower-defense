@@ -7,6 +7,6 @@ class BasicTurret < Turret
 
   def fire!(dx, dy)
     Game.instance.add_bullet(Cream.new @x + 12, @y + 6, dx, dy, @rotation)
-    SAMPLE.play 0.3
+    SAMPLE.play 0.2
   end
 end
