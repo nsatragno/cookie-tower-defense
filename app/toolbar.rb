@@ -1,6 +1,6 @@
 class Toolbar
   Y_OFFSET = 10 * 32
-  BUTTON_MARGIN = 2
+  BUTTON_MARGIN = 8
   BUTTON_SPACING = 25
   HEIGHT = 40
 
