@@ -8,7 +8,7 @@ class Tutorial
         first_dough_pile.tile_x * 32,
         first_dough_pile.tile_y * 32 - 16,
         "sprites/click_me.png",
-        32, 48) do
+        32, 48, 0, false) do
           dough_clicks -= 1
           if dough_clicks <= 0
             next_step
@@ -20,7 +20,8 @@ class Tutorial
         Game.instance.toolbar.buttons[0].y,
         "sprites/click_me.png",
         Game.instance.toolbar.buttons[0].width,
-        Game.instance.toolbar.buttons[0].height, -10) do
+        Game.instance.toolbar.buttons[0].height, -10,
+        false) do
           next_step
         end
 
@@ -28,7 +29,7 @@ class Tutorial
         32 * 16,
         32 * 7,
         "sprites/click_me.png",
-        32, 32) do
+        32, 32, 0, false) do
           next_step
         end
 
