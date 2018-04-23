@@ -25,6 +25,7 @@ require_relative '../app/tutorial.rb'
 require_relative '../app/window.rb'
 
 require_relative '../app/enemies/enemy.rb'
+require_relative '../app/enemies/apc.rb'
 require_relative '../app/enemies/basic_enemy.rb'
 
 require_relative '../app/levels/level1.rb'

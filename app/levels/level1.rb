@@ -32,8 +32,9 @@ class Level1
   end
 
   def spawn_enemy
-    if @timer % ENEMY_SPAWN_TIME == 0
-      BasicEnemy.new(@spawn)
+    if @timer == 1
+    #if @timer % ENEMY_SPAWN_TIME == 0
+      Apc.new(@spawn)
     end
   end
 

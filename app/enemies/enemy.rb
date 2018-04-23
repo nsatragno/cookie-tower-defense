@@ -30,7 +30,7 @@ class Enemy
   end
 
   def tile_coordinates
-    [(@x + 16) / 32, (@y + 16) / 32]
+    [((@x + 16) / 32).floor, ((@y + 16) / 32).floor]
   end
 
   def occupied_coordinates
