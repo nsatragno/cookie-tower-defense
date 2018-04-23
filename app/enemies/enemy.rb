@@ -58,13 +58,7 @@ class Enemy
     if @hp < @max_hp
       healthbar_x = @x - (32 - size) / 2
       healthbar_y = @y + size
-      @healthbar.draw healthbar_x, healthbar_y, 2
-
-      hp_size = 26 * @hp / @max_hp
-
-      hue = 125 * @hp / @max_hp
-      color = Gosu::Color.from_hsv(hue, 1, 1)
-      Gosu::draw_rect healthbar_x + 3, healthbar_y + 5, hp_size, 4, color, 3
+      Healthbar::draw healthbar_x, healthbar_y, @hp, @max_hp
     end
   end
 
