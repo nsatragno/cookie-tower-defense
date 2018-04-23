@@ -12,6 +12,7 @@ class DoughPile < Button
     super(tile_x * 32, tile_y * 32 - 16,32, 48) do
       Game.instance.dough += 1
       @dough -= 1
+      Game.instance.add_fx PlusOne.new("+1", 0xff_ffffff, @tile_x * 32 + 10, @tile_y * 32 - 6)
     end
   end
 

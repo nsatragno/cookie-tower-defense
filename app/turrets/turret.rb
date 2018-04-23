@@ -80,6 +80,7 @@ class Turret < Button
         if can_place?
           @placed = true
           Game.instance.dough = Game.instance.dough - @cost
+          Game.instance.add_fx PlusOne.new("-#{@cost}", 0xff_ff0000, @x + 10, @y)
           PLACE_SAMPLE.play
         end
       end

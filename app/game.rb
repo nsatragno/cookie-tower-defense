@@ -22,6 +22,7 @@ class Game
     @turrets = []
     @enemies = []
     @bullets = []
+    @fxs = []
     @master_cookie = @level.master_cookie
     @dough_piles = @level.dough_piles
     @level&.song&.play(true)
@@ -98,6 +99,10 @@ class Game
       enemy.update
       enemy.remove?
     end
+    @fxs.delete_if do |fx|
+      fx.update
+      fx.remove?
+    end
 
     if @placing_turret
       @placing_turret.update
@@ -149,6 +154,7 @@ class Game
       @turrets.each &:draw
       @bullets.each &:draw
       @enemies.each &:draw
+      @fxs.each &:draw
 
       @placing_turret&.draw
       @dough_piles.each &:draw
@@ -186,5 +192,9 @@ class Game
 
   def add_bullet(bullet)
     @bullets << bullet
+  end
+
+  def add_fx(fx)
+    @fxs << fx
   end
 end

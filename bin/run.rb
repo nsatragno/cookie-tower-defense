@@ -47,6 +47,7 @@ require_relative '../app/projectiles/poptart.rb'
 require_relative '../app/turrets/turret.rb'
 require_relative '../app/turrets/basic_turret.rb'
 require_relative '../app/turrets/cookie_shooter_turret.rb'
+require_relative '../app/turrets/plus_one.rb'
 require_relative '../app/turrets/toaster_turret.rb'
 
 Window.instance.show
