@@ -25,12 +25,18 @@ class Toolbar
   end
 
   def update
-    @buttons.each &:update
+    @buttons.each_with_index do |button, index|
+      next unless Game.instance.level.allowed_buttons.find_index index
+      button.update
+    end
   end
 
   def draw
     @sprite.draw 0, Y_OFFSET, 1
-    @buttons.each &:draw
+    @buttons.each_with_index do |button, index|
+      next unless Game.instance.level.allowed_buttons.find_index index
+      button.draw
+    end
     @font.draw "Dough: #{Game.instance.dough}", 200, Y_OFFSET + 12, 1
   end
 end

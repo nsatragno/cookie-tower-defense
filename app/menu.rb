@@ -24,7 +24,11 @@ class Menu
       Window.instance.fullscreen = @fullscreen
       toggle_fullscreen.text = "Toggle Fullscreen [#{@fullscreen ? 'on' : 'off'}]"
     end
-    @buttons = [ title, start_game, toggle_fullscreen ]
+
+    exit_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 3, "Exit Game", BUTTON_WIDTH, 32) do
+      exit
+    end
+    @buttons = [ title, start_game, toggle_fullscreen, exit_game ]
     @entities = []
     @tank_cooldown = 0
   end

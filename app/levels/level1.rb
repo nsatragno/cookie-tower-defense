@@ -19,6 +19,8 @@ class Level1 < Level
       { enemy: BasicEnemy, delta: 20 },
       { enemy: BasicEnemy, delta: 20 },
     ]
+
+    @allowed_buttons = [0]
     super
   end
 

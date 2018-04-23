@@ -1,6 +1,7 @@
 class Level
   ENEMY_SPAWN_TIME = 120
 
+  attr_reader :allowed_buttons
   attr_reader :map
   attr_reader :path
   attr_reader :spawn
