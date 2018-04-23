@@ -10,6 +10,9 @@ class Menu
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
     @fullscreen = false
+    song = Gosu::Song.new "music/menu_track.ogg"
+    song.volume = 0.2
+    song.play
 
     title = TextButton.new(X_OFFSET, Y_OFFSET, "Cookie Tower Defense", BUTTON_WIDTH, 32, false) do
     end
@@ -25,7 +28,7 @@ class Menu
       toggle_fullscreen.text = "Toggle Fullscreen [#{@fullscreen ? 'on' : 'off'}]"
     end
 
-    toggle_tutorial = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 3, "Toggle Tutorial [off]", BUTTON_WIDTH, 32) do
+    toggle_tutorial = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 3, "Toggle Tutorial [on]", BUTTON_WIDTH, 32) do
       Game.instance.tutorial = Game.instance.tutorial ? nil : Tutorial.new
       toggle_tutorial.text = "Toggle Tutorial [#{Game.instance.tutorial ? 'on' : 'off'}]"
     end

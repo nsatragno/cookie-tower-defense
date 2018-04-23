@@ -23,6 +23,10 @@ class Level1 < Level
     ]
 
     @allowed_buttons = [0]
+
+    @song = Gosu::Song.new "music/level_1_track.ogg"
+    @song.volume = 0.2
+
     super
   end
 

@@ -33,3 +33,9 @@ bin/run.sh
 http://www.1001fonts.com/dpcomic-font.html
 
 Thanks codeman38
+
+# Music
+
+https://opengameart.org/content/oves-essential-game-audio-pack-collection-160-files-updated
+
+Score written and produced by Ove Melaa (Omsofware@hotmail.com) 

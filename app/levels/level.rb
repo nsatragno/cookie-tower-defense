@@ -6,6 +6,7 @@ class Level
   attr_reader :path
   attr_reader :spawn
   attr_reader :base
+  attr_reader :song
 
   def initialize
     @timer = 0

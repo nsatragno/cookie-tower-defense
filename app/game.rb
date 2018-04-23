@@ -12,6 +12,10 @@ class Game
 
   include Singleton
 
+  def initialize
+    @tutorial = Tutorial.new
+  end
+
   def restart!(level)
     @level = level
     @toolbar = Toolbar.new
@@ -20,6 +24,7 @@ class Game
     @bullets = []
     @master_cookie = @level.master_cookie
     @dough_piles = @level.dough_piles
+    @level&.song&.play(true)
     @dough = 0
     @font = Gosu::Font.new 20
     @path = PathFinder.new build_map, @level.spawn, @level.base

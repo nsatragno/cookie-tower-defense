@@ -26,18 +26,7 @@ class Level2 < Level
       { enemy: FastTank, delta: 20 },
       { enemy: FastTank, delta: 20 },
 
-      { enemy: FastTank, delta: 200 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
-      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 300 },
       { enemy: FastTank, delta: 5 },
       { enemy: FastTank, delta: 5 },
       { enemy: FastTank, delta: 5 },
@@ -52,6 +41,10 @@ class Level2 < Level
     ]
 
     @allowed_buttons = [0, 1]
+
+    @song = Gosu::Song.new "music/level_2_track.mp3"
+    @song.volume = 0.2
+
     super
   end
 

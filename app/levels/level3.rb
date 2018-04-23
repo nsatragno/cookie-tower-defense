@@ -23,7 +23,24 @@ class Level3 < Level
       { enemy: enemy, delta: delta }
     end
 
+    @enemies_to_spawn += (0...TOTAL_ENEMIES / 2).map do |i|
+      enemy_random = rand(20)
+      if enemy_random < 3
+        enemy = Apc
+      elsif enemy_random < 10
+        enemy = FastTank
+      else
+        enemy = BasicEnemy
+      end
+      delta = rand(40) + 10
+      { enemy: enemy, delta: delta }
+    end
+
     @allowed_buttons = [0, 1, 2, 3]
+
+    @song = Gosu::Song.new "music/level_3_track.ogg"
+    @song.volume = 0.2
+
     super
   end
 
