@@ -7,6 +7,6 @@ class CookieShooterTurret < Turret
 
   def fire!(dx, dy)
     Game.instance.add_bullet(Cookie.new @x + 11, @y + 2, dx, dy)
-    SAMPLE.play
+    SAMPLE.play 0.3
   end
 end

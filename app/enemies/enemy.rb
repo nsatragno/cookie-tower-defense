@@ -71,7 +71,7 @@ class Enemy
   def take_damage!(damage)
     @hp -= damage
     @status = @hp <= 0 ? :dead : :damaged
-    IMPACT_SAMPLE.play
+    IMPACT_SAMPLE.play 0.3
   end
 
   def hitbox

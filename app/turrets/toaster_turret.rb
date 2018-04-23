@@ -7,6 +7,6 @@ class ToasterTurret < Turret
 
   def fire!(dx, dy)
     Game.instance.add_bullet(Poptart.new @x + 12, @y + 10, dx, dy, @rotation)
-    SAMPLE.play
+    SAMPLE.play 0.3
   end
 end
