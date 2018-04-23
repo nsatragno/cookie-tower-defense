@@ -2,8 +2,8 @@ class Game
   attr_accessor :dough
   attr_accessor :placing_turret
   attr_accessor :dough_piles
+  attr_accessor :level
   attr_reader :map
-  attr_reader :level
   attr_reader :enemies
   attr_reader :path
   attr_reader :master_cookie
@@ -128,6 +128,11 @@ class Game
 
     if @master_cookie.status == :dead
       @pause = GameOverMenu.new
+      return
+    end
+
+    if @level.done? and @enemies.empty?
+      @pause = LevelCompleteMenu.new @level.next
     end
   end
 

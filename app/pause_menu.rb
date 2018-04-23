@@ -29,8 +29,8 @@ class PauseMenu
   end
 
   def draw
-    Gosu.draw_rect(0, 0, Window::WINDOW_WIDTH / 2, Window::WINDOW_HEIGHT / 2, 0x66_000000)
-    Gosu.draw_rect(X_OFFSET, Y_OFFSET - (BUTTON_SPACING - 32) / 2, BUTTON_WIDTH, BUTTON_SPACING * 3, 0xaa_000000)
+    Gosu.draw_rect(0, 0, Window::WINDOW_WIDTH / 2, Window::WINDOW_HEIGHT / 2, 0x66_000000, 100)
+    Gosu.draw_rect(X_OFFSET, Y_OFFSET - (BUTTON_SPACING - 32) / 2, BUTTON_WIDTH, BUTTON_SPACING * 3, 0xaa_000000, 100)
     @buttons.each &:draw
   end
 end

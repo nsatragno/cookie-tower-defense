@@ -39,4 +39,8 @@ class Level
   def draw
     @tileset.draw
   end
+
+  def done?
+    @enemies_to_spawn.empty?
+  end
 end
