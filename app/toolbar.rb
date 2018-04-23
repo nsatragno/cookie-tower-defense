@@ -32,11 +32,11 @@ class Toolbar
   end
 
   def draw
-    @sprite.draw 0, Y_OFFSET, 1
+    @sprite.draw 0, Y_OFFSET, 50
     @buttons.each_with_index do |button, index|
       next unless Game.instance.level.allowed_buttons.find_index index
       button.draw
     end
-    @font.draw "Dough: #{Game.instance.dough}", 200, Y_OFFSET + 12, 1
+    @font.draw "Dough: #{Game.instance.dough}", 200, Y_OFFSET + 12, 50
   end
 end

@@ -12,12 +12,8 @@ class Game
 
   include Singleton
 
-  def initialize
-    @tutorial = Tutorial.new
-  end
-
   def restart!
-    @level = Level1.new
+    @level = Level2.new
     @toolbar = Toolbar.new
     @turrets = []
     @enemies = []

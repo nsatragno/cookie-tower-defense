@@ -1,11 +1,13 @@
 class Level2 < Level
   def initialize
-    @tileset = Tileset.new "level1.json"
-    @spawn = [19, 2]
-    @base = [1, 5]
+    @tileset = Tileset.new "level2.json"
+    @spawn = [10, 1]
+    @base = [10, 8]
 
     @enemies_to_spawn = [
-      { enemy: FastTank, delta: 0 },
+      { enemy: Apc, delta: 0 },
+
+      { enemy: FastTank, delta: 3000 },
       { enemy: FastTank, delta: 240 },
       { enemy: FastTank, delta: 240 },
       { enemy: FastTank, delta: 120 },
@@ -22,12 +24,12 @@ class Level2 < Level
       { enemy: Apc, delta: 300 },
     ]
 
-    @allowed_buttons = [0]
+    @allowed_buttons = [0, 1]
     super
   end
 
   def dough_piles
-    [DoughPile.new(1, 1, 10), DoughPile.new(1, 2, 10), DoughPile.new(2, 2, 10)]
+    [DoughPile.new(1, 2, 50), DoughPile.new(2, 2, 50), DoughPile.new(1, 3, 50), DoughPile.new(2, 3, 50)]
   end
 
   def next

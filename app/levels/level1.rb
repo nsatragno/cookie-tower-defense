@@ -7,19 +7,19 @@ class Level1 < Level
     @enemies_to_spawn = [
       { enemy: BasicEnemy, delta: 0 },
       { enemy: BasicEnemy, delta: 240 },
-      #{ enemy: BasicEnemy, delta: 240 },
-      #{ enemy: BasicEnemy, delta: 120 },
-      #{ enemy: BasicEnemy, delta: 120 },
-      #{ enemy: BasicEnemy, delta: 120 },
-      #{ enemy: BasicEnemy, delta: 300 },
-      #{ enemy: BasicEnemy, delta: 20 },
-      #{ enemy: BasicEnemy, delta: 20 },
-      #{ enemy: BasicEnemy, delta: 20 },
-      #{ enemy: BasicEnemy, delta: 20 },
-      #{ enemy: BasicEnemy, delta: 20 },
-      #{ enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 240 },
+      { enemy: BasicEnemy, delta: 120 },
+      { enemy: BasicEnemy, delta: 120 },
+      { enemy: BasicEnemy, delta: 120 },
+      { enemy: BasicEnemy, delta: 300 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
 
-      #{ enemy: Apc, delta: 300 },
+      { enemy: Apc, delta: 300 },
     ]
 
     @allowed_buttons = [0]
@@ -27,7 +27,7 @@ class Level1 < Level
   end
 
   def dough_piles
-    [DoughPile.new(1, 1, 10), DoughPile.new(1, 2, 10), DoughPile.new(2, 2, 10)]
+    [DoughPile.new(1, 1, 50), DoughPile.new(1, 2, 50), DoughPile.new(2, 2, 50)]
   end
 
   def next

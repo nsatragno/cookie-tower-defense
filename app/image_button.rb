@@ -8,7 +8,7 @@ class ImageButton < Button
   end
 
   def draw
-    @sprite.draw @x, @y + @y_offset, 1
+    @sprite.draw @x, @y + @y_offset, 200
     if @status == :hover
       Gosu::draw_rect(@x, @y, @width, @height, 0x20_ffffff, 200)
     elsif @status == :clicked

@@ -89,7 +89,7 @@ class Enemy
           @path = Game.instance.path.calculate_path(current_tile)
           if @next_tile == Game.instance.level.base
             @path = []
-          elsif @path.empty?
+          elsif @path.size == 1
             try_tile = [current_tile[0] + 1, current_tile[1]]
             unless Game.instance.path.accessible? try_tile
               try_tile = [current_tile[0] + 1, current_tile[1]]
