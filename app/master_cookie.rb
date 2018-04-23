@@ -2,8 +2,9 @@ class MasterCookie
   attr_reader :tile_x
   attr_reader :tile_y
   attr_reader :collision_tiles
+  attr_reader :status
 
-  HP = 10
+  HP = 1
 
   def initialize(tile_x, tile_y)
     @tile_x = tile_x

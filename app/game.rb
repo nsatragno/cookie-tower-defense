@@ -12,6 +12,10 @@ class Game
   include Singleton
 
   def initialize
+    @tutorial = Tutorial.new
+  end
+
+  def restart!
     @level = Level1.new
     @toolbar = Toolbar.new
     @turrets = []
@@ -22,8 +26,7 @@ class Game
     @dough = 1000
     @font = Gosu::Font.new 20
     @path = PathFinder.new build_map, @level.spawn, @level.base
-
-    @tutorial = Tutorial.new
+    @pause = nil
   end
 
   def build_map
@@ -121,6 +124,9 @@ class Game
       end
     end
 
+    if @master_cookie.status == :dead
+      @pause = GameOverMenu.new
+    end
   end
 
   def draw
