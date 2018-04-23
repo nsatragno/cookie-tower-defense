@@ -12,7 +12,7 @@ class Menu
     @fullscreen = false
     song = Gosu::Song.new "music/menu_track.ogg"
     song.volume = 0.2
-    song.play
+    song.play(true)
 
     title = TextButton.new(X_OFFSET, Y_OFFSET, "Cookie Tower Defense", BUTTON_WIDTH, 32, false) do
     end
