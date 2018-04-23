@@ -4,6 +4,6 @@ class BasicTurret < Turret
   end
 
   def fire!(dx, dy)
-    Game.instance.add_bullet(Cream.new @x, @y - 5, dx, dy, @rotation)
+    Game.instance.add_bullet(Cream.new @x + 12, @y + 6, dx, dy, @rotation)
   end
 end

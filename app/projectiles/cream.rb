@@ -8,7 +8,7 @@ class Cream < Projectile
     dx, dy = (Vector[dx, dy].normalize * SPEED).to_a
     @life = LIFETIME
     sprite = SPRITE_SHEET[direction]
-    super(x, y, 10, dx, dy, sprite)
+    super(x, y, 10, dx, dy, sprite, 1, -12, -12)
   end
 
   def update

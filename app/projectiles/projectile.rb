@@ -1,5 +1,5 @@
 class Projectile
-  def initialize(x, y, size, dx, dy, sprite, damage = 1)
+  def initialize(x, y, size, dx, dy, sprite, damage = 1, x_offset = 0, y_offset = 0)
     @x = x
     @y = y
     @dx = dx
@@ -8,6 +8,8 @@ class Projectile
     @sprite = sprite
     @damage = damage
     @status = :alive
+    @x_offset = x_offset
+    @y_offset = y_offset
   end
 
   def update
@@ -27,10 +29,10 @@ class Projectile
   end
 
   def draw
-    @sprite.draw @x, @y, 2
+    @sprite.draw @x + @x_offset, @y + @y_offset, 2
   end
 
   def colliding?(entity)
-    entity.hitbox.intersects?(@x + @size / 2, @y + @size / 2)
+    entity.hitbox.intersects?(@x + @size / 2, @y + @size / 2, @size, @size)
   end
 end
