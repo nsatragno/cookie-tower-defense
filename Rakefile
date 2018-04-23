@@ -8,7 +8,7 @@ Releasy::Project.new do
   verbose # Can be removed if you don't want to see all build messages.
 
   executable "bin/run.rb"
-  files ["app/**/*.rb", "fonts/**/*.*", "maps/**/*.*", "samples/**/*.*", "sprites/**/*.*", "music/**/*.*"]
+  files ["app/**/*.rb", "fonts/**/*.*", "maps/**/*.*", "samples/**/*.*", "music/**/*.*", "sprites/**/*.*"]
   exposed_files ["README.md"]
   add_link "https://ldjam.com/events/ludum-dare/41/$81969", "Ludum Dare Entry"
   exclude_encoding # Applications that don't use advanced encoding (e.g. Japanese characters) can save build size with this.
