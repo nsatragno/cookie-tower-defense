@@ -129,7 +129,7 @@ class Game
     end
 
     if @master_cookie.status == :dead
-      @pause = GameOverMenu.new
+      @pause = GameOverMenu.new(@level)
       return
     end
 

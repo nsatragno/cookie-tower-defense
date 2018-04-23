@@ -6,14 +6,15 @@ class GameOverMenu
 
   GAME_OVER_SAMPLE = Gosu::Sample.new "samples/game_over.ogg"
 
-  def initialize
+  def initialize(level)
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
 
     game_over_button = TextButton.new(X_OFFSET, Y_OFFSET, "Game Over", BUTTON_WIDTH, 32, false) do
     end
 
-    restart_button = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Restart Game", BUTTON_WIDTH, 32) do
-      Window.instance.screen = Menu.new
+    restart_button = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Restart Level", BUTTON_WIDTH, 32) do
+      Window.instance.screen = Game.instance
+      Game.instance.restart!(level.class.new)
     end
 
     exit_button = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 2, "Exit Game", BUTTON_WIDTH, 32) do
