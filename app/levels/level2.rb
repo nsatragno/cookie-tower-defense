@@ -5,26 +5,53 @@ class Level2 < Level
     @base = [10, 8]
 
     @enemies_to_spawn = [
-      { enemy: Apc, delta: 0 },
+      { enemy: Apc, delta: 500 },
+      { enemy: Apc, delta: 500 },
+      { enemy: Apc, delta: 500 },
 
-      { enemy: FastTank, delta: 3000 },
-      { enemy: FastTank, delta: 240 },
-      { enemy: FastTank, delta: 240 },
-      { enemy: FastTank, delta: 120 },
-      { enemy: FastTank, delta: 120 },
-      { enemy: FastTank, delta: 120 },
-      { enemy: FastTank, delta: 300 },
-      { enemy: FastTank, delta: 20 },
-      { enemy: FastTank, delta: 20 },
+      { enemy: BasicEnemy, delta: 600 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+
+      { enemy: BasicEnemy, delta: 200 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
+      { enemy: BasicEnemy, delta: 20 },
       { enemy: FastTank, delta: 20 },
       { enemy: FastTank, delta: 20 },
       { enemy: FastTank, delta: 20 },
       { enemy: FastTank, delta: 20 },
 
-      { enemy: Apc, delta: 300 },
+      { enemy: FastTank, delta: 200 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
+      { enemy: FastTank, delta: 5 },
     ]
 
-    @allowed_buttons = [0, 1, 2]
+    @allowed_buttons = [0, 1]
     super
   end
 

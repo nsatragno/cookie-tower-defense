@@ -7,11 +7,12 @@ class Enemy
 
   IMPACT_SAMPLE = Gosu::Sample.new "samples/enemy_impact.ogg"
 
-  def initialize(tile_coordinates, hp, size, speed, sprite_name)
+  def initialize(tile_coordinates, hp, size, speed, sprite_name, damage = 1)
     @max_hp = hp
     @hp = hp
     @size = size
     @speed = speed
+    @damage = damage
 
     @x = tile_coordinates[0] * 32 + (32 - size) / 2
     @y = tile_coordinates[1] * 32 + (32 - size) / 2
@@ -114,7 +115,7 @@ class Enemy
       end
       if current_tile == Game.instance.level.base
         @status = :hit
-        Game.instance.master_cookie.take_damage
+        Game.instance.master_cookie.take_damage(@damage)
         return
       end
       @next_tile = @path[next_tile_index]

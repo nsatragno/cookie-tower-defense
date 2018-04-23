@@ -110,7 +110,7 @@ class Game
           map_changed = true
           @turrets << @placing_turret
           @new_path = nil
-          @placing_turret = nil
+          @placing_turret = @placing_turret.class.new
         end
       end
     end

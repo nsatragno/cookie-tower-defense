@@ -2,7 +2,7 @@ class BasicTurret < Turret
   SAMPLE = Gosu::Sample.new "samples/oreo_fire.ogg"
 
   def initialize
-    super("sprites/basic_turret_sheet.png", 1, 10, 20)
+    super("sprites/basic_turret_sheet.png", 1, 5, 20)
   end
 
   def fire!(dx, dy)

@@ -4,7 +4,7 @@ class MasterCookie
   attr_reader :collision_tiles
   attr_reader :status
 
-  HP = 1
+  HP = 10
 
   def initialize(tile_x, tile_y)
     @tile_x = tile_x
@@ -19,9 +19,9 @@ class MasterCookie
     @hp = HP
   end
 
-  def take_damage
+  def take_damage(damage)
     @status = :damaged
-    @hp -= 1
+    @hp -= damage
     if @hp <= 0
       @status = :dead
     end
