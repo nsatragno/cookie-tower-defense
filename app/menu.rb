@@ -1,6 +1,6 @@
 class Menu
   X_OFFSET = 220
-  Y_OFFSET = 100
+  Y_OFFSET = 60
   BUTTON_WIDTH = 200
   BUTTON_SPACING = 48
 
@@ -25,10 +25,15 @@ class Menu
       toggle_fullscreen.text = "Toggle Fullscreen [#{@fullscreen ? 'on' : 'off'}]"
     end
 
-    exit_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 3, "Exit Game", BUTTON_WIDTH, 32) do
+    toggle_tutorial = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 3, "Toggle Tutorial [on]", BUTTON_WIDTH, 32) do
+      Game.instance.tutorial = Game.instance.tutorial ? nil : Tutorial.new
+      toggle_tutorial.text = "Toggle Tutorial [#{Game.instance.tutorial ? 'on' : 'off'}]"
+    end
+
+    exit_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 4, "Exit Game", BUTTON_WIDTH, 32) do
       exit
     end
-    @buttons = [ title, start_game, toggle_fullscreen, exit_game ]
+    @buttons = [ title, start_game, toggle_fullscreen, toggle_tutorial, exit_game ]
     @entities = []
     @tank_cooldown = 0
   end

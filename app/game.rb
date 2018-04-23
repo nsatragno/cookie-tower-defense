@@ -1,4 +1,5 @@
 class Game
+  attr_accessor :tutorial
   attr_accessor :dough
   attr_accessor :placing_turret
   attr_accessor :dough_piles
