@@ -11,8 +11,7 @@ class LevelCompleteMenu
     end
 
     next_button = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Next Level", BUTTON_WIDTH, 32) do
-      Game.instance.restart!
-      Game.instance.level = next_level
+      Game.instance.restart!(next_level)
       Window.instance.screen = Game.instance
     end
 

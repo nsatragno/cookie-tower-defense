@@ -16,7 +16,7 @@ class Menu
 
     start_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Start New Game", BUTTON_WIDTH, 32) do
       Window.instance.screen = Game.instance
-      Game.instance.restart!
+      Game.instance.restart!(Level1.new)
     end
 
     toggle_fullscreen = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING * 2, "Toggle Fullscreen [off]", BUTTON_WIDTH, 32) do

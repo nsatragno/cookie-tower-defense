@@ -3,7 +3,7 @@ class Game
   attr_accessor :dough
   attr_accessor :placing_turret
   attr_accessor :dough_piles
-  attr_accessor :level
+  attr_reader :level
   attr_reader :map
   attr_reader :enemies
   attr_reader :path
@@ -12,15 +12,15 @@ class Game
 
   include Singleton
 
-  def restart!
-    @level = Level2.new
+  def restart!(level)
+    @level = level
     @toolbar = Toolbar.new
     @turrets = []
     @enemies = []
     @bullets = []
     @master_cookie = @level.master_cookie
     @dough_piles = @level.dough_piles
-    @dough = 1000
+    @dough = 0
     @font = Gosu::Font.new 20
     @path = PathFinder.new build_map, @level.spawn, @level.base
     @pause = nil
