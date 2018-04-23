@@ -17,6 +17,10 @@ class Input
     button_down?(button) and not @@pressed[button]
   end
 
+  def self.button_released?(button)
+    not button_down?(button) and @@pressed[button]
+  end
+
   def self.button_down?(button)
     case button
     when MS_LEFT

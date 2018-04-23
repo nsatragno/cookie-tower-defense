@@ -24,7 +24,7 @@ class Level2 < Level
       { enemy: Apc, delta: 300 },
     ]
 
-    @allowed_buttons = [0, 1]
+    @allowed_buttons = [0, 1, 2]
     super
   end
 

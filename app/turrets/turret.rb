@@ -2,6 +2,8 @@ class Turret < Button
   attr_reader :placed
   attr_reader :changed_tiles
 
+  PLACE_SAMPLE = Gosu::Sample.new "samples/turret_placement.ogg"
+
   def initialize(sprite_name, range, cost, cooldown)
     @sprite = Gosu::Image.load_tiles(sprite_name, 32, 32, retro: true)
     @placed = false
@@ -77,6 +79,7 @@ class Turret < Button
         if can_place?
           @placed = true
           Game.instance.dough = Game.instance.dough - @cost
+          PLACE_SAMPLE.play
         end
       end
 

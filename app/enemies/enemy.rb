@@ -5,6 +5,8 @@ class Enemy
 
   attr_writer :path
 
+  IMPACT_SAMPLE = Gosu::Sample.new "samples/enemy_impact.ogg"
+
   def initialize(tile_coordinates, hp, size, speed, sprite_name)
     @max_hp = hp
     @hp = hp
@@ -69,6 +71,7 @@ class Enemy
   def take_damage!(damage)
     @hp -= damage
     @status = @hp <= 0 ? :dead : :damaged
+    IMPACT_SAMPLE.play
   end
 
   def hitbox

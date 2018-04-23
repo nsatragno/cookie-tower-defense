@@ -18,6 +18,7 @@ class Window < Gosu::Window
 
   def update
     @screen.update
+    @cursor.update
     Input.update
   end
 
