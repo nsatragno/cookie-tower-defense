@@ -34,6 +34,7 @@ require_relative '../app/enemies/fast_tank.rb'
 require_relative '../app/levels/level.rb'
 require_relative '../app/levels/level1.rb'
 require_relative '../app/levels/level2.rb'
+require_relative '../app/levels/level4.rb'
 
 require_relative '../app/projectiles/projectile.rb'
 require_relative '../app/projectiles/cookie.rb'

@@ -62,6 +62,7 @@ class Turret < Button
         end
       end
     else
+      Game.instance.toolbar.blink_dough = Game.instance.dough < @cost
       old_coordinates = tile_coordinates
       @x, @y = normalize_coordinates(Window.instance.mouse_x, Window.instance.mouse_y)
       @changed_tiles = old_coordinates != tile_coordinates
@@ -84,6 +85,7 @@ class Turret < Button
       end
 
       if Input::button_pressed? Input::MS_RIGHT
+        Game.instance.toolbar.blink_dough = false
         @remove = true
       end
     end

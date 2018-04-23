@@ -4,7 +4,10 @@ class Toolbar
   BUTTON_SPACING = 25
   HEIGHT = 40
 
+  BLINK_TIMER = 10
+
   attr_reader :buttons
+  attr_accessor :blink_dough
 
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
@@ -22,6 +25,7 @@ class Toolbar
     end
 
     @buttons = [basic_turret_button, cookie_shooter_button, toaster_button]
+    @timer = 0
   end
 
   def update
@@ -29,6 +33,7 @@ class Toolbar
       next unless Game.instance.level.allowed_buttons.find_index index
       button.update
     end
+    @timer += 1
   end
 
   def draw
@@ -37,6 +42,15 @@ class Toolbar
       next unless Game.instance.level.allowed_buttons.find_index index
       button.draw
     end
-    @font.draw "Dough: #{Game.instance.dough}", 200, Y_OFFSET + 12, 50
+    if @blink_dough
+      if (@timer / BLINK_TIMER) % 2 == 0
+        color = 0xff_ffffff
+      else
+        color = 0xff_ff0000
+      end
+    else
+      color = 0xff_ffffff
+    end
+    @font.draw "Dough: #{Game.instance.dough}", 200, Y_OFFSET + 12, 50, 1, 1, color
   end
 end
