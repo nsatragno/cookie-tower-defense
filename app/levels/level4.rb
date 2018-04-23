@@ -56,6 +56,6 @@ class Level4 < Level
   end
 
   def next
-    Level4.new
+    nil
   end
 end

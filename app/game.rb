@@ -129,7 +129,11 @@ class Game
     end
 
     if @level.done? and @enemies.empty?
-      @pause = LevelCompleteMenu.new @level.next
+      if @level.next
+        @pause = LevelCompleteMenu.new @level.next
+      else
+        @pause = GameCompleteMenu.new
+      end
     end
   end
 
