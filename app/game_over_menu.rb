@@ -4,6 +4,8 @@ class GameOverMenu
   BUTTON_WIDTH = 200
   BUTTON_SPACING = 48
 
+  GAME_OVER_SAMPLE = Gosu::Sample.new "samples/game_over.ogg"
+
   def initialize
     @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
 
@@ -19,6 +21,8 @@ class GameOverMenu
     end
 
     @buttons = [ game_over_button, restart_button, exit_button ]
+
+    GAME_OVER_SAMPLE.play
   end
 
   def update
