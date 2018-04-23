@@ -14,7 +14,7 @@ class Menu
     song.volume = 0.2
     song.play(true)
 
-    title = TextButton.new(X_OFFSET, Y_OFFSET, "Cookie Tower Defense", BUTTON_WIDTH, 32, false) do
+    title = TextButton.new(X_OFFSET, Y_OFFSET, "They Came For The Chips!", BUTTON_WIDTH, 32, false) do
     end
 
     start_game = TextButton.new(X_OFFSET, Y_OFFSET + BUTTON_SPACING, "Start New Game", BUTTON_WIDTH, 32) do

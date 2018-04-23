@@ -1,5 +1,5 @@
 class Window < Gosu::Window
-  GAME_TITLE = "cookie-tower-defense"
+  GAME_TITLE = "They Came For The Chips!"
 
   WINDOW_HEIGHT = 720
   WINDOW_WIDTH = 1280
@@ -13,7 +13,6 @@ class Window < Gosu::Window
     self.caption = GAME_TITLE
     @screen = Menu.new
     @cursor = Cursor.new
-    @font = Gosu::Font.new 15, name: "fonts/dpcomic.ttf"
   end
 
   def update
@@ -25,6 +24,5 @@ class Window < Gosu::Window
   def draw
     @screen.draw
     @cursor.draw
-    @font.draw Gosu.fps, 0, 0, 1
   end
 end
