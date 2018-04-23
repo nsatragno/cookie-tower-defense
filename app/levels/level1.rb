@@ -34,7 +34,7 @@ class Level1
   def spawn_enemy
     if @timer == 1
     #if @timer % ENEMY_SPAWN_TIME == 0
-      Apc.new(@spawn)
+      FastTank.new(@spawn)
     end
   end
 
